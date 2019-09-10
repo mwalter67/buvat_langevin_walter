@@ -1,3 +1,5 @@
+##BUVAT LANGEVIN WALTER
+
 ## Importation des données
 
 data=read.csv("C:/Users/mikew/OneDrive/Bureau/MASTER 2 ESA/S1/SVM/Projet SVM/creditcard.csv", header=T )
