@@ -11,7 +11,7 @@ names(data)
 
 ##Création des échantillons d'apprentissage et de test
 
-seed=1
+set.seed(1)
 train=sample(1:nrow(data),200000)
 data_train=data[train,]
 data_test=data[-train,]
