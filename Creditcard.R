@@ -2,7 +2,9 @@
 
 ## Importation des données
 
-data=read.csv("C:/Users/mikew/OneDrive/Bureau/MASTER 2 ESA/S1/SVM/Projet SVM/creditcard.csv", header=T )
+
+#data=read.csv("C:/Users/mikew/OneDrive/Bureau/MASTER 2 ESA/S1/SVM/Projet SVM/creditcard.csv", header=T )
+#data=read.csv("C:/Users/util/Desktop/M2 ESA/Support Vector Machine/creditcard.csv", header=T )
 head(data)
 attach(data)
 names(data)
