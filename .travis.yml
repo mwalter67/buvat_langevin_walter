@@ -18,6 +18,7 @@ r_packages:
   - shiny
   - tidyverse
   - kableExtra
+  - e1071
   
 script:
   - R -f deploy.R
