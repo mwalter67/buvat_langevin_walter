@@ -1,0 +1,49 @@
+﻿body {
+  background-color: #fafafa;
+}
+
+#header {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 0 1px #000;
+  padding: 20px 0 20px;
+  border-bottom: 1px solid #ddd;
+  margin: 0 -30px 20px;
+  background-color: #0066ff;
+}
+
+#title {
+  font-size: 30px;
+}
+
+#subtitle {
+  font-size: 20px;
+}
+
+#subtitle a {
+  color: #ffffff;
+ 
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+  border-top: 2px solid #0066ff;
+  border-bottom: 0;
+  font-weight: bold;
+}
+
+.nav-tabs>li {
+  margin-left: 5px;
+}
+
+.nav-tabs>li>a {
+  color: #0066ff;
+  background-color: #f8f8f8;
+  border: 1px solid #dddddd;
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus {
+  background-color: #dddddd;
+}
