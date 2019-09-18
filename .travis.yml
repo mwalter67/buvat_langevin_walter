@@ -19,6 +19,8 @@ r_packages:
   - tidyverse
   - kableExtra
   - e1071
+  - data.table
+  - ggplot2
   
 script:
   - R -f deploy.R
