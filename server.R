@@ -3,22 +3,18 @@ library(shiny)
 library(ggplot2)
 library(e1071)
 
-data=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/creditcard.csv",sep=',')
-attach(data)
-set.seed(1)
-essai=sample(1:nrow(data),10000)
-data_essai=data[essai,]
-class_essai=Class[essai]
+resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
+attach(resample)
+names(resample)
 
 choix_svm=function(kernel, cout, deg){
     set.seed(5)
-    svm_essai=svm(Class~. , data=data_essai, kernel=kernel, type="C-classification", cost=cout, degree=deg )
-    pred_essai=predict(svm_essai, data_essai)
-    tab=table(pred_essai,class_essai)
-    err=mean(data_essai$Class!=pred_essai)*100
-    print(svm_essai)   
+    svm_resample=svm(Class~. , data=resample, kernel=kernel, type="C-classification", cost=cout, degree=deg )
+    pred_essai=predict(svm_resample, resample)
+    tab=table(pred_essai,Class)
+    err=mean(resample$Class!=pred_essai)*100
+    print(svm_resample)   
     print(tab)
-    
 }
 
 
