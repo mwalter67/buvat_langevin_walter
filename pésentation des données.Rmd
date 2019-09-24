@@ -1,0 +1,32 @@
+---
+title: "Présentation des données"
+author: "Antoine Buvat / Julien Langevin / Michael Walter"
+date: "20/09/2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Données brut
+
+Notre jeu de données contients 284807 obsérvations, ainsi que les 31 variables suivante:  
+
+-Umont: Coût de la transaction en dollar  
+-v1 : v28: Composant optenue a l'aide d'une acp affin d'anonymiser les personnes.    
+-time: seconde entre la premiere transaction et la transaction en question.  
+-class: Prend pour modalité 1 si l'individus est frauduleux, et 0 sinon. Il s'agit de notre variable de réponse.  
+On cherche à construire un modèle qui prédit la fraude ou non d'un client en foction des autres variables apr la méthode du SVM.
+
+## Modification :
+
+Ces données brut nous posent deux problèmes. Le premier est un problème théorique :   
+Sur les 284807, on ne possède que 492 cas de faude, soit 0.172%. En effet, la fraude correspond à un évenement rare, et le jeu de donées est donc fortement déséquilibrés.
+Il deux type de méthodes pour répondre a cette problèmatique:  
+- La méthode RUS (Random Under Sampling) consiste à retirer une partie des observation de non-fraude de l'échantillion d'apprentissage de manière aléatoire, affin qu'elle ne représente plus qu'une certaine proportion fixé de l'échantillion.Elle a pour avantage de limiter le temp d'éxécution de l'algorythme puisqu'elle utilise beaucoup moins de ressource que si on utilise l'enssemble de données. En revanche, on perd de l'imformation.Pour éviter se problème, il éxiste des méthode d'undesampling tel que OSS qui consiste à éliminer certains individus de la classes majoritaire par la méthode des voisins les plus proches.  
+- La méthode ROS (Random Over Sampling) consiste à augmentater le nombre d'individus frauduleux par une dupplication aléatoire, affin qu'il représente une certaine proportion fixé de l'échantillion d'apprentissage.Dans cette méthode, on ne perd aucne imformation, et donc les résultats seront meilleurs. En revanche, on a un risque d'overfitting liée à la présence de multiple individus identiques.Pour éviter ce risque, on peut recourir à la méthode du SMOTE, méthode d'oversampling qui consiste à créer de individus froduleux symptétique à partir des individus déja éxistant.  
+La méthode d'oversampling par SMOTE est jugé de manière général comme la plus pérformante. Mais viens notre second problème, technique cette fois: notre jeu de données requière enormément de ressource. Notre objéctif étant de construire un démonstrateur simple et ludique de la méthode de machine à vecteur de support, on à donc fait le choix de modifier nos données par undersampling. Affin de limiter la perte d'imformation, on élimine déja les individus non frauduleux étant les plus proches voisins de ceux froduleux, soit (indiquez ici le nombre d'individus dégagé). Puis on transforme le reste de l'échantillion par RUS, de manière à avoir 70% d'individus ayant fait défaut et 30% n'ayant pas fait défaut.  
+Finalement, on travaillera sur un échantillions de (indiquez ici le nombre d'individus fraude) individus ayant fraudés et de (indiquez ici le nombre d'individus n'ayant pas fait défaut)  d'individus n'ayant pas fraudé, soit un total de (indiquez ici le nombre total d'individus) observations.  
