@@ -22,6 +22,7 @@ train <-data[inTrain]  #377 Total Occurrences of Fraud
 table(train$Class)
 test  <-data[-inTrain] 
 
+write.csv(test,"C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",row.names = FALSE)
 
 nonfraud<-which(train$Class==0)
 fraud<-which(train$Class==1)

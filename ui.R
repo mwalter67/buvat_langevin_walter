@@ -2,11 +2,13 @@ library(shiny)
 library(ggplot2)
 library(e1071)
 library(data.table)
+library(pROC)
+library(rmarkdown)
 
 
 shinyUI(fluidPage(title="Projet SVM",
                   tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/TEST_BIS/www/app.css")),
-                  tags$img(style="position: absolute; bottom: 0; right: 0; border: 0;width: 150px; height: 150px",
+                  tags$img(style="position: fixed; bottom: 0; left: 0; border: 0;width: 150px; height: 150px",
                            src="logoESA.png"
                            ),
 
@@ -27,6 +29,7 @@ shinyUI(fluidPage(title="Projet SVM",
             tabPanel(
                 title="Comment utiliser ce démonstrateur",
                 mainPanel(
+                    
                     textOutput("text1")
                 )
             ),
@@ -41,7 +44,7 @@ shinyUI(fluidPage(title="Projet SVM",
             tabPanel(
                 title="Présentation de nos données",
                 mainPanel(
-                    textOutput("text2")
+                    includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
                 )
             ),
             tabPanel(
@@ -56,7 +59,7 @@ shinyUI(fluidPage(title="Projet SVM",
                         ),
                         conditionalPanel("input.kernel =='polynomial'",
                                          sliderInput("deg",
-                                                     "Choix du degré du polynôme",
+                                                     "Choix du degré du polynÃ´me",
                                                      min=3,
                                                      max=10,
                                                      value=3,
@@ -76,7 +79,12 @@ shinyUI(fluidPage(title="Projet SVM",
                     ),
                         
                         mainPanel(
-                            verbatimTextOutput("table1")
+                            verbatimTextOutput("table1"),
+                            plotOutput("confusion"),
+                            plotOutput("confusion2"),
+                            plotOutput("roc")
+                            
+                           
                             
                         )
                     )
