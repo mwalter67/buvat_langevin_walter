@@ -7,7 +7,7 @@ library(rmarkdown)
 
 
 shinyUI(fluidPage(title="Projet SVM",
-                  #tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/TEST_BIS/www/app.css")),
+                  tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/TEST_BIS/www/app.css")),
                   #tags$head(includeCSS("C:/Users/util/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   tags$img(style="position: fixed; bottom: 0; left: 0; border: 0;width: 150px; height: 150px",
                            src="logoESA.png"
@@ -27,73 +27,72 @@ shinyUI(fluidPage(title="Projet SVM",
                   
                   
                   navlistPanel(
-                      tabPanel(
-                          title="Comment utiliser ce démonstrateur",
-                          mainPanel(
-                              
-                              textOutput("text1")
-                          )
-                      ),
-                      tabPanel(
-                          title="Qu'est ce qu'un SVM?",
-                          
-                          mainPanel(
-                              plotOutput("Plot")
-                          )
-                      ),
-                      
-                      tabPanel(
-                          title="Présentation de nos données",
-                          mainPanel(
-                              #includeMarkdown("C:/Users/mickew/OneDriveDocuments/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
-                              #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
-                          )
-                      ),
-                      tabPanel(
-                          title="Intéraction intéractive avec le SVM",
-                          sidebarLayout(
-                              sidebarPanel(
-                                  selectInput("kernel",
-                                              "Choix du noyau",
-                                              choices=c("linear","polynomial","radial","sigmoid"),
-                                              multiple=FALSE,
-                                              selected="linear"
-                                  ),
-                                  conditionalPanel("input.kernel =='polynomial'",
-                                                   sliderInput("deg",
-                                                               "Choix du degré du polynÃ´me",
-                                                               min=3,
-                                                               max=10,
-                                                               value=3,
-                                                               step=1
-                                                               
-                                                   )
-                                                   
-                                  )
-                                  
-                                  ,
-                                  selectInput("cout",
-                                              "Coût de pénalisation",
-                                              choices=c(1,3,5,10),
-                                              multiple=FALSE,
-                                              selected=1
-                                  )
-                              ),
-                              
-                              mainPanel(
-                                  verbatimTextOutput("table1"),
-                                  plotOutput("confusion"),
-                                  plotOutput("confusion2"),
-                                  plotOutput("roc")
-                                  
-                                  
-                                  
-                              )
-                          )
-                          
-                          
-                          
+                    tabPanel(
+                      title="Comment utiliser ce démonstrateur",
+                      mainPanel(
+                        
+                        textOutput("text1")
                       )
+                    ),
+                    tabPanel(
+                      title="Qu'est ce qu'un SVM?",
+                      
+                      mainPanel(
+                        plotOutput("Plot")
+                      )
+                    ),
+                    
+                    tabPanel(
+                      title="Présentation de nos données",
+                      mainPanel(
+                        includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
+                        #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
+                      )
+                    ),
+                    tabPanel(
+                      title="Intéraction intéractive avec le SVM",
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput("kernel",
+                                      "Choix du noyau",
+                                      choices=c("linear","polynomial","radial","sigmoid"),
+                                      multiple=FALSE,
+                                      selected="linear"
+                          ),
+                          conditionalPanel("input.kernel =='polynomial'",
+                                           radioButtons("deg",
+                                                        "Choix du degré du polynôme",
+                                                        choices = c(3,4,5),
+                                                        selected = 3,
+                                                        inline = F
+                                           )
+                                           
+                          )
+                          
+                          ,
+                          selectInput("cout",
+                                      "Coût de pénalisation",
+                                      choices=c(1,3,5,10),
+                                      multiple=FALSE,
+                                      selected=1
+                          )
+                        ),
+                        
+                        mainPanel(
+                          verbatimTextOutput("table1"),
+                          plotOutput("confusion"),
+                          plotOutput("confusion2"),
+                          verbatimTextOutput("err"),
+                          plotOutput("roc")
+                          
+                          
+                          
+                        )
+                      )
+                      
+                      
+                      
+                    )
                   )
                   
 ))

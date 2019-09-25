@@ -5,11 +5,10 @@ library(data.table)
 library(pROC)
 library(rmarkdown)
 
-#resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
-#test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
-resample=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
-test=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
-
+resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
+test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
+#resample=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
+#test=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
 attach(resample)
 names(resample)
 
@@ -19,7 +18,8 @@ choix_svm=function(kernel, cout, deg){
   pred_essai=predict(svm_resample, resample)
   tab=table(pred_essai,Class)
   err=mean(resample$Class!=pred_essai)*100
-  print(svm_resample)   
+  print(svm_resample) 
+  paste("Le taux d'erreur sur l'échantillon d'apprentissage est de:",err,"% .")
 }
 
 confusion=function(kernel, cout, deg){
@@ -38,6 +38,20 @@ confusion=function(kernel, cout, deg){
     xlab("Classe prédite") + ylab("Classe observée") +
     theme(plot.title = element_text(hjust = 0.5))
   print(confusion)
+  return(err)
+}
+
+err=function(kernel, cout, deg){
+  set.seed(5)
+  svm_resample=svm(Class~. , data=resample, kernel=kernel, type="C-classification", cost=cout, degree=deg )
+  pred2=predict(svm_resample,data=resample,newdata = test, probability = FALSE)
+  summary(pred2)
+  
+  tab2=table(pred2,test$Class)
+  tab2=as.data.frame(tab2)
+  err2=mean(test$Class!=pred2)*100
+  paste("Le taux d'erreur sur l'échantillon de validation est de:",err2,"%.")
+  
 }
 
 confusion2=function(kernel, cout, deg){
@@ -68,6 +82,8 @@ confusion2=function(kernel, cout, deg){
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
+  
+  
   output$text1 <- renderText("Essai du texte 1")
   
   output$Plot <- renderPlot({
@@ -87,7 +103,7 @@ shinyServer(function(input, output) {
       geom_point(size = 2) +
       scale_color_manual(values=c("#000000", "#FF0000")) +
       theme(legend.position = "none") +
-      ggtitle("Exemple d'un SVM avec un Ã©chantillon sÃ©parable")+
+      ggtitle("Exemple d'un SVM avec un échantillon séparable")+
       theme(plot.title = element_text(hjust = 0.5))+
       labs(x="X")+
       labs(y="Y")
@@ -121,6 +137,9 @@ shinyServer(function(input, output) {
     
   })
   
+  output$err <- renderPrint({
+    err(input$kernel,input$cout, input$deg)
+  }) 
   
   
   
