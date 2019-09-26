@@ -4,6 +4,7 @@ library(e1071)
 library(data.table)
 library(pROC)
 library(rmarkdown)
+library(caret)
 
 
 shinyUI(fluidPage(title="Projet SVM",
@@ -82,7 +83,6 @@ shinyUI(fluidPage(title="Projet SVM",
                           verbatimTextOutput("table1"),
                           plotOutput("confusion"),
                           plotOutput("confusion2"),
-                          verbatimTextOutput("err"),
                           plotOutput("roc")
                           
                           

@@ -4,6 +4,7 @@ library(e1071)
 library(data.table)
 library(pROC)
 library(rmarkdown)
+library(caret)
 
 resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
@@ -16,64 +17,68 @@ choix_svm=function(kernel, cout, deg){
   set.seed(5)
   svm_resample=svm(Class~. , data=resample, kernel=kernel, type="C-classification", cost=cout, degree=deg )
   pred_essai=predict(svm_resample, resample)
-  tab=table(pred_essai,Class)
-  err=mean(resample$Class!=pred_essai)*100
   print(svm_resample) 
-  paste("Le taux d'erreur sur l'échantillon d'apprentissage est de:",err,"% .")
+  
 }
 
 confusion=function(kernel, cout, deg){
   set.seed(5)
   svm_resample=svm(Class~. , data=resample, kernel=kernel, type="C-classification", cost=cout, degree=deg )
+  
   pred_essai=predict(svm_resample, resample)
-  tab=table(pred_essai,Class)
-  err=mean(resample$Class!=pred_essai)*100
-  tab=data.frame(tab)
-  confusion=ggplot(data =  tab, mapping = aes(x = pred_essai, y = Class)) + 
-    geom_tile(aes(fill = Freq), colour = "black") +
-    geom_text(aes(label = sprintf("%1.0f", Freq)), vjust = 1) +
-    scale_fill_gradient(low = "white", high = "white") +
-    theme_bw() + theme(legend.position = "none") +
-    ggtitle("Matrice de confusion de l'échantillon d'apprentissage") +
-    xlab("Classe prédite") + ylab("Classe observée") +
-    theme(plot.title = element_text(hjust = 0.5))
-  print(confusion)
-  return(err)
-}
-
-err=function(kernel, cout, deg){
-  set.seed(5)
-  svm_resample=svm(Class~. , data=resample, kernel=kernel, type="C-classification", cost=cout, degree=deg )
-  pred2=predict(svm_resample,data=resample,newdata = test, probability = FALSE)
-  summary(pred2)
-  
-  tab2=table(pred2,test$Class)
-  tab2=as.data.frame(tab2)
-  err2=mean(test$Class!=pred2)*100
-  paste("Le taux d'erreur sur l'échantillon de validation est de:",err2,"%.")
-  
+  Class.f=as.factor(Class)
+  conf=confusionMatrix(data=pred_essai,reference=Class.f)
+  plot.confusion(conf,"Matrice de confusion sur son échantillon d'apprentissage")
 }
 
 confusion2=function(kernel, cout, deg){
   set.seed(5)
   svm_resample=svm(Class~. , data=resample, kernel=kernel, type="C-classification", cost=cout, degree=deg )
-  pred2=predict(svm_resample,data=resample,newdata = test, probability = FALSE)
-  summary(pred2)
   
-  tab2=table(pred2,test$Class)
-  tab2=as.data.frame(tab2)
-  err2=mean(test$Class!=pred2)*100
-  err2
+  pred_essai=predict(svm_resample, newdata=test)
+  Class.f=as.factor(test$Class)
+  conf=confusionMatrix(data=pred_essai,reference=Class.f)
+  plot.confusion(conf,"Matrice de confusion sur son échantillon de test")
+}
+
+
+
+
+
+plot.confusion=function(cm,titre) {
   
-  confusion=ggplot(data =  tab2, mapping = aes(x = pred2, y = Var2)) + 
-    geom_tile(aes(fill = Freq), colour = "black") +
-    geom_text(aes(label = sprintf("%1.0f", Freq)), vjust = 1) +
-    scale_fill_gradient(low = "white", high = "white") +
-    theme_bw() + theme(legend.position = "none") +
-    ggtitle("Matrice de confusion de l'échantillon test") +
-    xlab("Classe prédite") + ylab("Classe observée") +
-    theme(plot.title = element_text(hjust = 0.5))
-  print(confusion)
+  layout(matrix(c(1,1,2)))
+  par(mar=c(2,2,2,2))
+  plot(c(100, 345), c(300, 450), type = "n", xlab="", ylab="", xaxt='n', yaxt='n')
+  title(titre, cex.main=2)
+  
+  # create the matrix 
+  rect(150, 430, 240, 370, col='#3F97D0')
+  text(195, 435, 'Pas de Fraude', cex=1.2)
+  rect(250, 430, 340, 370, col='#F7AD50')
+  text(295, 435, 'Fraude', cex=1.2)
+  text(125, 370, 'Prédite', cex=1.3, srt=90, font=2)
+  text(245, 450, 'Observée', cex=1.3, font=2)
+  rect(150, 305, 240, 365, col='#F7AD50')
+  rect(250, 305, 340, 365, col='#3F97D0')
+  text(140, 400, 'Pas de fraude', cex=1.2, srt=90)
+  text(140, 335, 'Fraude', cex=1.2, srt=90)
+  
+  # add in the cm results 
+  res <- as.numeric(cm$table)
+  text(195, 400, res[1], cex=1.6, font=2, col='white')
+  text(195, 335, res[2], cex=1.6, font=2, col='white')
+  text(295, 400, res[3], cex=1.6, font=2, col='white')
+  text(295, 335, res[4], cex=1.6, font=2, col='white')
+  
+  # add in the specifics 
+  plot(c(100, 0), c(100, 0), type = "n", xlab="", ylab="", main = "Statistiques importantes", xaxt='n', yaxt='n')
+  text(25, 60, "Sensitivité", cex=1.5, font=2)
+  text(25, 40, round(as.numeric(cm$byClass[1]), 3), cex=1.4)
+  text(50, 60, "Spécificité", cex=1.5, font=2)
+  text(50, 40, round(as.numeric(cm$byClass[2]), 3), cex=1.4)
+  text(75, 60, "Taux d'erreur", cex=1.5, font=2)
+  text(75, 40, 1-round(as.numeric(cm$overall[1]), 3), cex=1.4)
   
 }
 
@@ -137,9 +142,6 @@ shinyServer(function(input, output) {
     
   })
   
-  output$err <- renderPrint({
-    err(input$kernel,input$cout, input$deg)
-  }) 
   
   
   
