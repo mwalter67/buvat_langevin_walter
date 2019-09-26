@@ -1,0 +1,14 @@
+---
+title: "Meilleur SVM"
+author: "BUVAT/LANGEVIN/WALTER"
+date: "26/09/2019"
+output: html_document
+---
+
+
+
+Lors de l'onglet précédent, vous avez pu modifier les paramètres du SVM afin de pouvoir comprendre l'importance de ceux-ci.  
+L'objectif de cet onglet est de pouvoir comparer les performance de notre SVM face à deux modèles concurrents: une régression logistique et un arbre de classification. Nous allons donc utiliser le meilleur SVM parmi les différentes possibilités que l'on vous a proposé afin de voir si il est plus performants que ses concurrents.  
+
+Ci-dessous, nous vous présentons un tableau montrant les performances de notre SVM selon le choix de ses paramètres.  
+

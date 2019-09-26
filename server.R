@@ -5,6 +5,7 @@ library(data.table)
 library(pROC)
 library(rmarkdown)
 library(caret)
+library(tree)
 
 resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
@@ -38,12 +39,8 @@ confusion2=function(kernel, cout, deg){
   pred_essai=predict(svm_resample, newdata=test)
   Class.f=as.factor(test$Class)
   conf=confusionMatrix(data=pred_essai,reference=Class.f)
-  plot.confusion(conf,"Matrice de confusion sur son échantillon de test")
+  plot.confusion(conf,"Matrice de confusion du SVM sur l'échantillon de test")
 }
-
-
-
-
 
 plot.confusion=function(cm,titre) {
   
@@ -87,9 +84,9 @@ plot.confusion=function(cm,titre) {
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
-  
-  
   output$text1 <- renderText("Essai du texte 1")
+  
+  output$text2 <- renderText("Essai du texte 2")
   
   output$Plot <- renderPlot({
     
@@ -138,8 +135,57 @@ shinyServer(function(input, output) {
     err2=mean(test$Class!=pred2)*100
     prednum2=as.numeric(pred2)
     roc2=roc(test$Class,prednum2)
-    plot.roc(roc2, print.auc=T, col="blue", main= "Courbe ROC sur l'échantillon de test")
+    plot.roc(roc2, print.auc=T, col="blue", main= "Courbe ROC du SVM sur l'échantillon de test")
     
+  })
+  
+  output$BestSVM <- renderTable({
+    bestsvm=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/bestsvm.csv")
+    bestsvm
+  })
+  
+  output$meilleursvm <-renderPlot({
+    confusion2("radial",10,3)
+  })
+  
+  output$concurrent<-renderPlot({
+    modele=ifelse(input$method=="Régression logistique","log","tree")
+    if (modele=="tree"){
+      Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
+      resample2=data.frame(resample,Class2)
+      resample2=resample2[,-31]
+      
+      Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
+      test2=data.frame(test,Class2)
+      test2=test2[,-31]
+      
+      
+      tree.rus=tree(Class2~.,resample2)
+      
+      set.seed(2501)
+      
+      tree.pred=predict(tree.rus,test2,type="class")
+      table(tree.pred,Class2)
+      
+      Class4=test2$Class2
+      conf.tree=confusionMatrix(data=tree.pred,reference=Class4)
+      plot.confusion(conf.tree,"Matrice de confusion de l'arbre de régression sur l'échantillon test")
+    }
+    else{
+      glm_rus=glm(Class~V4+V10+V12+V14,data=resample,family=binomial)
+      glm_pred_prob=predict(glm_rus,newdata=test,type="response")
+      
+      glm_pred=rep(0,nrow(test))
+      glm_pred[glm_pred_prob<=.5]=0
+      glm_pred[glm_pred_prob>.5]=1
+      
+      Class.glm=as.factor(test$Class)
+      glm_pred=as.factor(glm_pred)
+      
+      conf2=confusionMatrix(data=glm_pred,reference=Class.glm)
+      plot.confusion(conf2,"Matrice de confusion de la régression logistique sur l'échantillon test")
+    }
+    par(mfrow=c(1,1))
   })
   
   

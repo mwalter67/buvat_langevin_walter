@@ -5,6 +5,7 @@ library(data.table)
 library(pROC)
 library(rmarkdown)
 library(caret)
+library(tree)
 
 
 shinyUI(fluidPage(title="Projet SVM",
@@ -27,7 +28,7 @@ shinyUI(fluidPage(title="Projet SVM",
                   ),
                   
                   
-                  navlistPanel(
+                  tabsetPanel(
                     tabPanel(
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
@@ -91,6 +92,29 @@ shinyUI(fluidPage(title="Projet SVM",
                       )
                       
                       
+                      
+                    ),
+                    tabPanel(
+                      title="Comparaison du SVM avec deux autres méthodes de machines learning",
+                      sidebarLayout(
+                        sidebarPanel(
+                          radioButtons("method",
+                                       "Choisissez le modèle concurrent",
+                                       choices=c("Régression logistique","Arbre de classification"),
+                                       selected = "Régression logistique",
+                                       inline=F)
+                          
+                        ),
+
+                      mainPanel(
+                          includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
+                          tableOutput("BestSVM"),
+                          fluidRow(
+                             column(width=6,plotOutput("meilleursvm")),
+                             column(width=6,plotOutput("concurrent")))
+                          
+                        )
+                      )
                       
                     )
                   )
