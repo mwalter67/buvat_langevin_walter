@@ -94,30 +94,45 @@ shinyUI(fluidPage(title="Projet SVM",
                       
                       
                     ),
+                    ##
                     tabPanel(
                       title="Comparaison du SVM avec deux autres méthodes de machines learning",
-                      sidebarLayout(
-                        sidebarPanel(
-                          radioButtons("method",
-                                       "Choisissez le modèle concurrent",
-                                       choices=c("Régression logistique","Arbre de classification"),
-                                       selected = "Régression logistique",
-                                       inline=F)
-                          
-                        ),
-
-                      mainPanel(
-                          includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
-                          tableOutput("BestSVM"),
-                          fluidRow(
-                             column(width=6,plotOutput("meilleursvm")),
-                             column(width=6,plotOutput("concurrent"))),
-                          plotOutput("roccomp")
-                          
-                        )
-                      )
                       
+                        
+                      navlistPanel(
+                        tabPanel(
+                          "Recherche du meilleur SVM",
+                          mainPanel(
+                            includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
+                            tableOutput("BestSVM")
+                          )
+                        ),
+                        tabPanel(
+                          "Regression logistique",
+                          mainPanel(
+                            
+                            plotOutput("meilleursvm"),
+                            plotOutput("concurrent"),
+                            plotOutput("roccomp")
+                            
+                          )
+                        ),
+                        tabPanel(
+                          "Arbre de regression",
+                          mainPanel(
+                            
+                              plotOutput("meilleursvm2"),
+                              plotOutput("concurrent2"),
+                              plotOutput("roccomp2")
+                            
+                            
+                          )
+                        )
+                        
+                      )
+                    ) 
+                    ##
                     )
                   )
                   
-))
+)

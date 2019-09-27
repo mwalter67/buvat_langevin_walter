@@ -39,7 +39,7 @@ confusion2=function(kernel, cout, deg){
   pred_essai=predict(svm_resample, newdata=test)
   Class.f=as.factor(test$Class)
   conf=confusionMatrix(data=pred_essai,reference=Class.f)
-  plot.confusion(conf,"Matrice de confusion du SVM sur l'échantillon de test")
+  plot.confusion(conf,"Matrice de confusion du SVM (test)")
 }
 
 plot.confusion=function(cm,titre) {
@@ -135,7 +135,7 @@ shinyServer(function(input, output) {
     err2=mean(test$Class!=pred2)*100
     prednum2=as.numeric(pred2)
     roc2=roc(test$Class,prednum2)
-    plot.roc(roc2, print.auc=T, col="blue", main= "Courbe ROC du SVM sur l'échantillon de test")
+    plot.roc(roc2, print.auc=T, col="blue", main= "Courbe ROC du SVM")
     
   })
   
@@ -148,31 +148,12 @@ shinyServer(function(input, output) {
     confusion2("radial",10,3)
   })
   
+  output$meilleursvm2 <-renderPlot({
+    confusion2("radial",10,3)
+  })
+  
   output$concurrent<-renderPlot({
-    modele=ifelse(input$method=="Régression logistique","log","tree")
-    if (modele=="tree"){
-      Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
-      resample2=data.frame(resample,Class2)
-      resample2=resample2[,-31]
-      
-      Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
-      test2=data.frame(test,Class2)
-      test2=test2[,-31]
-      
-      
-      tree.rus=tree(Class2~.,resample2)
-      
-      set.seed(2501)
-      
-      tree.pred=predict(tree.rus,test2,type="class")
-      table(tree.pred,Class2)
-      
-      Class4=test2$Class2
-      conf.tree=confusionMatrix(data=tree.pred,reference=Class4)
-      plot.confusion(conf.tree,"Matrice de confusion de l'arbre de régression sur l'échantillon test")
-    }
-    else{
-      glm_rus=glm(Class~.,family="binomial",data=resample)
+    glm_rus=glm(Class~.,family="binomial",data=resample)
       glm_pred_prob=predict(glm_rus,newdata=test,type="response")
       
       glm_pred=rep(0,nrow(test))
@@ -183,14 +164,14 @@ shinyServer(function(input, output) {
       glm_pred=as.factor(glm_pred)
       
       conf2=confusionMatrix(data=glm_pred,reference=Class.glm)
-      plot.confusion(conf2,"Matrice de confusion de la régression logistique sur l'échantillon test")
-    }
-    par(mfrow=c(1,1))
-  })
+      plot.confusion(conf2,"Matrice de confusion de la régression logistique")
+    
+  }) 
+  
   
   output$roccomp <- renderPlot({
-    modele=ifelse(input$method=="Régression logistique","log","tree")
-    if (modele=="log"){
+    
+   
       set.seed(5)
       svm_resample=svm(Class~. , data=resample, kernel="radial", type="C-classification", cost=10)
       pred_essai=predict(svm_resample, newdata=test)
@@ -203,27 +184,53 @@ shinyServer(function(input, output) {
       
       plot.roc(test$Class,as.numeric(pred_essai),main="Comparaison des courbes ROC", percent=TRUE, col="#1c61b6", print.auc=T,  print.auc.y=40)
       plot.roc(test$Class,glm_pred, percent=TRUE, col="#008600",add=T, print.auc=T)
-      legend("bottomright", legend=c("SVM optimal", "Regression logistique"), col=c("#1c61b6", "#008600"), lwd=2)  
-    }
-    else{
-      set.seed(5)
-      svm_resample=svm(Class~. , data=resample, kernel="radial", type="C-classification", cost=10)
-      pred_essai=predict(svm_resample, newdata=test)
+      legend("bottomright", legend=c("SVM optimal", "Régression logistique"), col=c("#1c61b6", "#008600"), lwd=2)  
+    
+    
       
-      Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
-      resample2=data.frame(resample,Class2)
-      resample2=resample2[,-31]
-      Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
-      test2=data.frame(test,Class2)
-      test2=test2[,-31]
-      tree.rus=tree(Class2~.,resample2)
-      set.seed(2501)
-      tree.pred=predict(tree.rus,test2,type="class")
-      
-      plot.roc(test$Class,as.numeric(pred_essai),main="Comparaison des courbes ROC", percent=TRUE, col="#1c61b6", print.auc=T,  print.auc.y=40)
-      plot.roc(test2$Class2,as.numeric(tree.pred), percent=TRUE, col="#008600",add=T, print.auc=T)
-      legend("bottomright", legend=c("SVM optimal", "Arbre de classification"), col=c("#1c61b6", "#008600"), lwd=2)
-    }
+    
+  })
+  
+  output$concurrent2 <-renderPlot({
+    Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
+    resample2=data.frame(resample,Class2)
+    resample2=resample2[,-31]
+    
+    Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
+    test2=data.frame(test,Class2)
+    test2=test2[,-31]
+    
+    
+    tree.rus=tree(Class2~.,resample2)
+    
+    set.seed(2501)
+    
+    tree.pred=predict(tree.rus,test2,type="class")
+    table(tree.pred,Class2)
+    
+    Class4=test2$Class2
+    conf.tree=confusionMatrix(data=tree.pred,reference=Class4)
+    plot.confusion(conf.tree,"Matrice de confusion de l'arbre de classification")
+  })
+  
+  output$roccomp2 <-renderPlot({
+    set.seed(5)
+    svm_resample=svm(Class~. , data=resample, kernel="radial", type="C-classification", cost=10)
+    pred_essai=predict(svm_resample, newdata=test)
+    
+    Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
+    resample2=data.frame(resample,Class2)
+    resample2=resample2[,-31]
+    Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
+    test2=data.frame(test,Class2)
+    test2=test2[,-31]
+    tree.rus=tree(Class2~.,resample2)
+    set.seed(2501)
+    tree.pred=predict(tree.rus,test2,type="class")
+    
+    plot.roc(test$Class,as.numeric(pred_essai),main="Comparaison des courbes ROC", percent=TRUE, col="#1c61b6", print.auc=T,  print.auc.y=40)
+    plot.roc(test2$Class2,as.numeric(tree.pred), percent=TRUE, col="#008600",add=T, print.auc=T)
+    legend("bottomright", legend=c("SVM optimal", "Arbre de classification"), col=c("#1c61b6", "#008600"), lwd=2)
   })
   
   
@@ -232,5 +239,3 @@ shinyServer(function(input, output) {
 })
 
 
-
-##
