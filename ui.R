@@ -111,7 +111,8 @@ shinyUI(fluidPage(title="Projet SVM",
                           tableOutput("BestSVM"),
                           fluidRow(
                              column(width=6,plotOutput("meilleursvm")),
-                             column(width=6,plotOutput("concurrent")))
+                             column(width=6,plotOutput("concurrent"))),
+                          plotOutput("roccomp")
                           
                         )
                       )
