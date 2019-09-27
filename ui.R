@@ -9,6 +9,15 @@ library(tree)
 
 
 shinyUI(fluidPage(title="Projet SVM",
+                  tags$style('body{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                             font-size: 14px;
+                             line-height: 1.42857143;
+                             color: #333;
+                             background-color: #fff;
+                             text-align: justify;}'),
+                  tags$style('.col-sm-8{width: 100%;
+                             padding-right: 200px;
+                             padding-left: 200px;}'),
                   tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/TEST_BIS/www/app.css")),
                   #tags$head(includeCSS("C:/Users/util/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   tags$img(style="position: fixed; bottom: 0; left: 0; border: 0;width: 150px; height: 150px",
@@ -94,7 +103,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       
                       
                     ),
-                    ##
+                    
                     tabPanel(
                       title="Comparaison du SVM avec deux autres méthodes de machines learning",
                       
@@ -131,7 +140,7 @@ shinyUI(fluidPage(title="Projet SVM",
                         
                       )
                     ) 
-                    ##
+                    
                     )
                   )
                   
