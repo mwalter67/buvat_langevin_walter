@@ -6,9 +6,6 @@ output:
   html_document: default
   pdf_document: default
 ---
-
-
-
 ## Données brut
 
 Dans le cadre de notre démonstrateur, nous avons fait le choix d'utiliser une base de données issue d'un site open source. Le base de données se nomme Credit Card Fraud Detection. Elle est disponible sur ce site <https://www.kaggle.com/mlg-ulb/creditcardfraud>.  
@@ -32,3 +29,6 @@ Il deux type de méthodes pour répondre a cette problèmatique:
 - La méthode ROS (Random Over Sampling) consiste à augmentater le nombre d'individus frauduleux par une dupplication aléatoire, affin qu'il représente une certaine proportion fixé de l'échantillion d'apprentissage.Dans cette méthode, on ne perd aucne imformation, et donc les résultats seront meilleurs. En revanche, on a un risque d'overfitting liée à la présence de multiple individus identiques.Pour éviter ce risque, on peut recourir à la méthode du SMOTE, méthode d'oversampling qui consiste à créer de individus froduleux symptétique à partir des individus déja éxistant.  
 La méthode d'oversampling par SMOTE est jugé de manière général comme la plus pérformante. Mais viens notre second problème, technique cette fois: notre jeu de données requière enormément de ressource. Notre objéctif étant de construire un démonstrateur simple et ludique de la méthode de machine à vecteur de support, on à donc fait le choix de modifier nos données par undersampling. Affin de limiter la perte d'imformation, on élimine déja les individus non frauduleux étant les plus proches voisins de ceux froduleux, soit (indiquez ici le nombre d'individus dégagé). Puis on transforme le reste de l'échantillion par RUS, de manière à avoir 70% d'individus ayant fait défaut et 30% n'ayant pas fait défaut.  
 Finalement, on travaillera sur un échantillions de (indiquez ici le nombre d'individus fraude) individus ayant fraudés et de (indiquez ici le nombre d'individus n'ayant pas fait défaut)  d'individus n'ayant pas fraudé, soit un total de (indiquez ici le nombre total d'individus) observations.  
+
+
+

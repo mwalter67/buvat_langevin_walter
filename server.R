@@ -6,7 +6,8 @@ library(pROC)
 library(rmarkdown)
 library(caret)
 library(tree)
-
+library(DT)       
+        
 resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
 #resample=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
@@ -139,10 +140,12 @@ shinyServer(function(input, output) {
     
   })
   
-  output$BestSVM <- renderTable({
+  output$bestsvm <- DT::renderDataTable({
     bestsvm=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/bestsvm.csv")
-    bestsvm
-  })
+    bestsvm},
+    options=list(pageLength=12,
+                 dom='tp')
+  )
   
   output$meilleursvm <-renderPlot({
     confusion2("radial",10,3)

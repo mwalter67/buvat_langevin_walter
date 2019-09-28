@@ -6,7 +6,7 @@ library(pROC)
 library(rmarkdown)
 library(caret)
 library(tree)
-
+library(DT)
 
 shinyUI(fluidPage(title="Projet SVM",
                   tags$style('body{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -15,9 +15,10 @@ shinyUI(fluidPage(title="Projet SVM",
                              color: #333;
                              background-color: #fff;
                              text-align: justify;}'),
-                  tags$style('.col-sm-8{width: 100%;
+                  tags$style('.col-sm-12{width: 100%;
                              padding-right: 200px;
                              padding-left: 200px;}'),
+                  
                   tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/TEST_BIS/www/app.css")),
                   #tags$head(includeCSS("C:/Users/util/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   tags$img(style="position: fixed; bottom: 0; left: 0; border: 0;width: 150px; height: 150px",
@@ -42,22 +43,25 @@ shinyUI(fluidPage(title="Projet SVM",
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
                         
-                        textOutput("text1")
+                        textOutput("text1"),
+                        width=12
                       )
                     ),
                     tabPanel(
                       title="Qu'est ce qu'un SVM?",
                       
                       mainPanel(
-                        plotOutput("Plot")
+                        plotOutput("Plot"),
+                        width = 12
                       )
                     ),
                     
                     tabPanel(
                       title="Présentation de nos données",
                       mainPanel(
-                        includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
+                        includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
+                        width = 12
                       )
                     ),
                     tabPanel(
@@ -113,7 +117,10 @@ shinyUI(fluidPage(title="Projet SVM",
                           "Recherche du meilleur SVM",
                           mainPanel(
                             includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
-                            tableOutput("BestSVM")
+                            fluidRow(
+                              column(8,align="center",
+                                     DT::dataTableOutput("bestsvm", width = 300)
+                            ))
                           )
                         ),
                         tabPanel(
