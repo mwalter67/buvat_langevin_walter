@@ -60,7 +60,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       title="Présentation de nos données",
                       mainPanel(
                         includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
-                        #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd")
+                        #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         width = 12
                       )
                     ),
@@ -117,6 +117,7 @@ shinyUI(fluidPage(title="Projet SVM",
                           "Recherche du meilleur SVM",
                           mainPanel(
                             includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
+                            #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
                             fluidRow(
                               column(8,align="center",
                                      DT::dataTableOutput("bestsvm", width = 300)
