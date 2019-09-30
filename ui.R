@@ -72,7 +72,7 @@ shinyUI(fluidPage(title="Projet SVM",
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         uiOutput(outputId = "image"),
-                        includeMarkdown("pres_donnees2.Rmd"),
+                        includeMarkdown("texte/pres_donnees2.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_donnees2.Rmd"),
                         width = 12
                       )
