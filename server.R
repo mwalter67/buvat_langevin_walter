@@ -33,7 +33,7 @@ confusion=function(kernel, cout, deg){
   pred_essai=predict(svm_resample, resample)
   Class.f=as.factor(Class)
   conf=confusionMatrix(data=pred_essai,reference=Class.f)
-  plot.confusion(conf,"Matrice de confusion sur son Ã©chantillon d'apprentissage")
+  plot.confusion(conf,"Matrice de confusion sur son échantillon d'apprentissage")
 }
 
 confusion2=function(kernel, cout, deg){
@@ -58,8 +58,8 @@ plot.confusion=function(cm,titre) {
   text(195, 435, 'Pas de Fraude', cex=1.2)
   rect(250, 430, 340, 370, col='#F7AD50')
   text(295, 435, 'Fraude', cex=1.2)
-  text(125, 370, 'PrÃ©dite', cex=1.3, srt=90, font=2)
-  text(245, 450, 'ObservÃ©e', cex=1.3, font=2)
+  text(125, 370, 'Prédite', cex=1.3, srt=90, font=2)
+  text(245, 450, 'Observée', cex=1.3, font=2)
   rect(150, 305, 240, 365, col='#F7AD50')
   rect(250, 305, 340, 365, col='#3F97D0')
   text(140, 400, 'Pas de fraude', cex=1.2, srt=90)
@@ -74,9 +74,9 @@ plot.confusion=function(cm,titre) {
   
   # add in the specifics 
   plot(c(100, 0), c(100, 0), type = "n", xlab="", ylab="", main = "Statistiques importantes", xaxt='n', yaxt='n')
-  text(25, 60, "SensitivitÃ©", cex=1.5, font=2)
+  text(25, 60, "Sensitivité", cex=1.5, font=2)
   text(25, 40, round(as.numeric(cm$byClass[1]), 3), cex=1.4)
-  text(50, 60, "SpÃ©cificitÃ©", cex=1.5, font=2)
+  text(50, 60, "Spécificité", cex=1.5, font=2)
   text(50, 40, round(as.numeric(cm$byClass[2]), 3), cex=1.4)
   text(75, 60, "Taux d'erreur", cex=1.5, font=2)
   text(75, 40, 1-round(as.numeric(cm$overall[1]), 3), cex=1.4)
@@ -109,7 +109,7 @@ shinyServer(function(input, output) {
       geom_point(size = 2) +
       scale_color_manual(values=c("#000000", "#FF0000")) +
       theme(legend.position = "none") +
-      ggtitle("Exemple d'un SVM avec un Ã©chantillon sÃ©parable")+
+      ggtitle("Exemple d'un SVM avec un échantillon séparable")+
       theme(plot.title = element_text(hjust = 0.5))+
       labs(x="X")+
       labs(y="Y")
@@ -172,7 +172,7 @@ shinyServer(function(input, output) {
       glm_pred=as.factor(glm_pred)
       
       conf2=confusionMatrix(data=glm_pred,reference=Class.glm)
-      plot.confusion(conf2,"Matrice de confusion de la rÃ©gression logistique")
+      plot.confusion(conf2,"Matrice de confusion de la régression logistique")
     
   }) 
   
@@ -192,7 +192,7 @@ shinyServer(function(input, output) {
       
       plot.roc(test$Class,as.numeric(pred_essai),main="Comparaison des courbes ROC", percent=TRUE, col="#1c61b6", print.auc=T,  print.auc.y=40)
       plot.roc(test$Class,glm_pred, percent=TRUE, col="#008600",add=T, print.auc=T)
-      legend("bottomright", legend=c("SVM optimal", "RÃ©gression logistique"), col=c("#1c61b6", "#008600"), lwd=2)  
+      legend("bottomright", legend=c("SVM optimal", "Régression logistique"), col=c("#1c61b6", "#008600"), lwd=2)  
     
     
       
@@ -240,6 +240,11 @@ shinyServer(function(input, output) {
     plot.roc(test2$Class2,as.numeric(tree.pred), percent=TRUE, col="#008600",add=T, print.auc=T)
     legend("bottomright", legend=c("SVM optimal", "Arbre de classification"), col=c("#1c61b6", "#008600"), lwd=2)
   })
+  
+  
+    output$image <- renderUI({
+      tags$img(src = "explication_bdd.png")
+    })
   
   
   

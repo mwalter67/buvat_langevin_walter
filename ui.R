@@ -26,6 +26,7 @@ shinyUI(fluidPage(title="Projet SVM",
                              margin-right: auto;
                              width: 80%;
                              height: auto;}'),
+                  
                   tags$head(includeCSS("www/app.css")),
                   #tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   #tags$head(includeCSS("C:/Users/util/Documents/GitHub/buvat_langevin_walter/www/app.css")),
@@ -70,6 +71,9 @@ shinyUI(fluidPage(title="Projet SVM",
                         includeMarkdown("texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
+                        uiOutput(outputId = "image"),
+                        includeMarkdown("pres_donnees2.Rmd"),
+                        #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_donnees2.Rmd"),
                         width = 12
                       )
                     ),
@@ -134,7 +138,7 @@ shinyUI(fluidPage(title="Projet SVM",
                           )
                         ),
                         tabPanel(
-                          "Regression logistique",
+                          "Régression logistique",
                           mainPanel(
                             
                             plotOutput("meilleursvm"),
@@ -144,7 +148,7 @@ shinyUI(fluidPage(title="Projet SVM",
                           )
                         ),
                         tabPanel(
-                          "Arbre de regression",
+                          "Arbre de classification",
                           mainPanel(
                             
                               plotOutput("meilleursvm2"),
