@@ -7,6 +7,7 @@ library(rmarkdown)
 library(caret)
 library(tree)
 library(DT)
+library(corrplot)
 
 shinyUI(fluidPage(title="Projet SVM",
                   tags$style('body{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
