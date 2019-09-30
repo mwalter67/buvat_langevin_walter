@@ -25,6 +25,18 @@
  
 }
 
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+  color: #fff;
+  background-color: #0066ff;
+}
+
+.nav-pills>li>a {
+  color: #0066ff;
+  background-color: #f8f8f8;
+}
+
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
@@ -47,3 +59,22 @@
 .nav>li>a:focus {
   background-color: #dddddd;
 }
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+}
+
