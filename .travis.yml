@@ -26,6 +26,7 @@ r_packages:
   - caret
   - tree
   - DT
+  - corrplot
   
 script:
   - R -f deploy.R
