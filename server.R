@@ -143,7 +143,8 @@ shinyServer(function(input, output) {
   })
   
   output$bestsvm <- DT::renderDataTable({
-    bestsvm=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/bestsvm.csv")
+    bestsvm=fread("bestsvm.csv"),
+    #bestsvm=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/bestsvm.csv")
     #bestsvm=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/bestsvm.csv")
     bestsvm},
     options=list(pageLength=12,
