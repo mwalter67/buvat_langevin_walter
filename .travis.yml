@@ -21,6 +21,11 @@ r_packages:
   - e1071
   - data.table
   - ggplot2
+  - pROC
+  - rmarkdown
+  - caret
+  - tree
+  - DT
   
 script:
   - R -f deploy.R
