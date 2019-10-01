@@ -19,9 +19,7 @@ shinyUI(fluidPage(title="Projet SVM",
                   tags$style('.col-sm-12{width: 100%;
                              padding-right: 200px;
                              padding-left: 200px;}'),
-                  tag$style('.shiny-image-output shiny-bound-output{width: 70%;
-                                                                    height: auto;
-                  }'),
+                  
                   
                   tags$style('img{vertical-align: middle;
                              display: block;
@@ -54,8 +52,7 @@ shinyUI(fluidPage(title="Projet SVM",
                     tabPanel(
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
-                        fluidRow(column(12,align="center",
-                        includeMarkdown("texte/intro.Rmd"))),
+                        includeMarkdown("texte/intro.Rmd"),
                         downloadButton("notice", "Téléchargement de la notice"),
                         width=12
                       )
@@ -75,8 +72,9 @@ shinyUI(fluidPage(title="Projet SVM",
                         includeMarkdown("texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
-                        imageOutput("image"),
+                        tags$img(src="www/explication_bdd.PNG"),
                         includeMarkdown("texte/pres_donnees2.Rmd"),
+                        
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_donnees2.Rmd"),
                         width = 12
                       )
