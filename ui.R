@@ -19,6 +19,9 @@ shinyUI(fluidPage(title="Projet SVM",
                   tags$style('.col-sm-12{width: 100%;
                              padding-right: 200px;
                              padding-left: 200px;}'),
+                  tag$style('.shiny-image-output shiny-bound-output{width: 70%;
+                                                                    height: auto;
+                  }'),
                   
                   tags$style('img{vertical-align: middle;
                              display: block;
@@ -51,7 +54,8 @@ shinyUI(fluidPage(title="Projet SVM",
                     tabPanel(
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
-                        includeMarkdown("texte/intro.Rmd"),
+                        fluidRow(column(12,align="center",
+                        includeMarkdown("texte/intro.Rmd"))),
                         downloadButton("notice", "Téléchargement de la notice"),
                         width=12
                       )
