@@ -241,10 +241,27 @@ shinyServer(function(input, output) {
     legend("bottomright", legend=c("SVM optimal", "Arbre de classification"), col=c("#1c61b6", "#008600"), lwd=2)
   })
   
-  
-    output$image <- renderUI({
-      tags$img(src = "explication_bdd.png")
-    })
+  output$notice <- downloadHandler(
+    filename = "notice.pdf",
+    content = function(file) {
+      # Copy the report file to a temporary directory before processing it, in
+      # case we don't have write permissions to the current working dir (which
+      # can happen when deployed).
+      tempReport <- file.path("texte/notice.Rmd")
+      file.copy("notice.Rmd", tempReport, overwrite = TRUE)
+      
+      
+      
+      # Knit the document, passing in the `params` list, and eval it in a
+      # child of the global environment (this isolates the code in the document
+      # from the code in this app).
+      rmarkdown::render(tempReport, output_file = file,
+                        params = params,
+                        envir = new.env(parent = globalenv())
+      )
+    }
+  )
+    
   
   
   

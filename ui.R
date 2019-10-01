@@ -51,7 +51,7 @@ shinyUI(fluidPage(title="Projet SVM",
                     tabPanel(
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
-                        
+                        downloadButton("notice", "Téléchargement de la notice"),
                         textOutput("text1"),
                         width=12
                       )
@@ -71,7 +71,7 @@ shinyUI(fluidPage(title="Projet SVM",
                         includeMarkdown("texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
-                        uiOutput(outputId = "image"),
+                        tags$img(src = "explication_bdd.png"),
                         includeMarkdown("texte/pres_donnees2.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_donnees2.Rmd"),
                         width = 12
