@@ -261,6 +261,14 @@ shinyServer(function(input, output) {
       )
     }
   )
+  
+  output$image <- renderImage({
+    # When input$n is 1, filename is ./images/image1.jpeg
+    filename <- file.path("www/explication_bdd.png")
+    
+    # Return a list containing the filename
+    list(src = filename)
+  }, deleteFile = FALSE)
     
   
   
