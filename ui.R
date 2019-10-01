@@ -29,7 +29,8 @@ shinyUI(fluidPage(title="Projet SVM",
                              height: auto;}'),
                   
                   tags$head(includeCSS("www/app.css")),
-                  #tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/www/app.css")),
+                  #tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/TEST_BIS/www/app.css")),
+                  tags$head(includeCSS("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   #tags$head(includeCSS("C:/Users/util/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   tags$img(style="position: fixed; bottom: 0; left: 0; border: 0;width: 150px; height: 150px",
                            src="logoESA.png"
@@ -61,7 +62,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       title="Qu'est ce qu'un SVM?",
                       
                       mainPanel(
-                        plotOutput("Plot"),
+                        includeMarkdown(rmarkdown::render("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/texte/SVM.Rmd")),
                         width = 12
                       )
                     ),
@@ -71,6 +72,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       mainPanel(
                         includeMarkdown("texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
+                        includeMarkdown("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/pres_données.Rmd"),
                         tags$img(src="www/explication_bdd.PNG"),
                         includeMarkdown("texte/pres_donnees2.Rmd"),
@@ -132,6 +134,7 @@ shinyUI(fluidPage(title="Projet SVM",
                           mainPanel(
                             includeMarkdown("texte/Best_SVM.Rmd"),
                             #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
+                            includeMarkdown("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
                             #includeMarkdown("C:/Users/util/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM.Rmd"),
                             fluidRow(
                               column(8,align="center",

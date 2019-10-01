@@ -1,0 +1,23 @@
+
+
+/* Whole document: */ 
+  body{ 
+      font-family: georgia ;
+      font: serif;
+      font-size: 12pt; 
+  } 
+/* Headers */ 
+  h1,h2{ 
+    font-size: 15pt; 
+    font-weight: bold;
+    font-family: georgia ;
+    font: serif;
+    
+  } 
+  
+  h3{
+    font-size: 12pt; 
+    font-weight: bold;
+    font-family: georgia ;
+    font: serif; 
+  }

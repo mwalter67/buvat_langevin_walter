@@ -13,6 +13,8 @@ resample=fread("creditcard_rus.csv",sep=',')
 test=fread("creditcard_test.csv",sep=',')
 #resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 #test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
+resample=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
+test=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
 #resample=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 #test=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
 attach(resample)
@@ -146,6 +148,7 @@ shinyServer(function(input, output) {
   output$bestsvm <- DT::renderDataTable({
     bestsvm=fread("bestsvm.csv")
     #bestsvm=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/bestsvm.csv")
+    bestsvm=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/bestsvm.csv")
     #bestsvm=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/bestsvm.csv")
     bestsvm},
     options=list(pageLength=12,
