@@ -51,8 +51,8 @@ shinyUI(fluidPage(title="Projet SVM",
                     tabPanel(
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
+                        includeMarkdown("texte/intro.Rmd"),
                         downloadButton("notice", "Téléchargement de la notice"),
-                        textOutput("text1"),
                         width=12
                       )
                     ),
