@@ -7,7 +7,7 @@ output: html_document
 
 Dans tous les cas, l'hyperplan séparateur est défini par l'équation suivante :
 
-<center><img src="latex1.png" style="position: relative; width: 326px; height: 96px"  /></center>
+<center><img src="latex1.PNG" style="position: relative; width: 326px; height: 96px"  /></center>
 
 La fonction g(x) est appelé le classifieur linéaire. Quand toutes les observations sont bien classées on dit que l'échantillon est linéairement séparable.
 
@@ -30,7 +30,7 @@ Quand les donnée ne sont pas linéairement séparables, il est possible qu'elle
 
 On transforme d'abord l'espace de représentation des données en un espace de dimension plus grande via une fonction phi. Il esxiste alors une fonction dite de noyau telle que :
 
-<center><img src="latex2.png" style="position: relative; width: 231px; height: 46px"  /></center>
+<center><img src="latex2.PNG" style="position: relative; width: 231px; height: 46px"  /></center>
 
 
 L'astuce réside alors dans le fait que pour implémenter le SVM dans l'espace de plus grande dimension, il n'est pas nécessaire de connaître la fonction phi. Il suffit seulement d'utiliser la fonction de noyau. 
