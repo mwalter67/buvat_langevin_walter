@@ -36,7 +36,7 @@ La méthode d'oversampling par SMOTE est jugé de manière général comme la pl
 
 Mais viens notre second problème, technique cette fois: notre jeu de données requiert énormément de ressources. Notre objectif étant de construire un démonstrateur simple et ludique de la méthode de __machine à vecteur de support__ (SVM), nous avons fait le choix de modifier nos données par undersampling en utilisant __la méthode du Random Under Sampling__ (RUS). Ci-dessous vous observerez la façon dont nous avons procéder: 
 
-<center><img src="www/explication_bdd.PNG" style="position: relative; width: 568px; height: 623px" alt="image1" /></center>
+<center><img src="www/explication_bdd.PNG" style="position: relative; width: 568px; height: 623px"  /></center>
 
 Nous avons décider de travailler avec un __ratio 70/30__ pour nos échantillon d'apprentissage et de validation. Ensuite, lors de la modification de l'échantillon d'apprentissage via Random Under Sampling, nous avons fait le choix d'avoir aussi un __ratio 70/30__ entre les transactions frauduleuses et non frauduleuses. 
 
