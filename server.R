@@ -8,13 +8,15 @@ library(caret)
 library(tree)
 library(DT)
 library(corrplot)
+library(rgl)
+
         
 resample=fread("creditcard_rus.csv",sep=',')
 test=fread("creditcard_test.csv",sep=',')
 #resample=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 #test=fread("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
-resample=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
-test=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
+#resample=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
+#test=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
 #resample=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",sep=',')
 #test=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",sep=',')
 attach(resample)
@@ -148,7 +150,7 @@ shinyServer(function(input, output) {
   output$bestsvm <- DT::renderDataTable({
     bestsvm=fread("bestsvm.csv")
     #bestsvm=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/bestsvm.csv")
-    bestsvm=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/bestsvm.csv")
+    #bestsvm=fread("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/bestsvm.csv")
     #bestsvm=fread("C:/Users/util/Documents/GitHub/buvat_langevin_walter/bestsvm.csv")
     bestsvm},
     options=list(pageLength=12,
@@ -265,8 +267,19 @@ shinyServer(function(input, output) {
     }
   )
   
-
+  output$troisd <-renderRglwidget({
+    train <- iris
+    train$y <-ifelse(train[,5]=="setosa", 1, -1)
+    sv <- svm(y~Petal.Length+Petal.Width+Sepal.Length, data=train, kernel="linear", scale=FALSE, type="C-classification")
+    W <- rowSums(sapply(1:length(sv$coefs), function(i) sv$coefs[i]*sv$SV[i,]))
+    plot3d(train$Petal.Length, train$Petal.Width, train$Sepal.Length, ylab="", xlab="", zlab="", col= ifelse(train$y==-1,"red","blue"), size = 2, type='s', alpha = .6, main="Un exemple dans un espace a 3 dimensions")
+    rgl.bg(color = "white")
+    rgl.planes(a = W[1], b=W[2], c=W[3], d=-sv$rho, color="green", alpha=.4)
+    rglwidget()
     
+  })
+  
+  
   
   
   

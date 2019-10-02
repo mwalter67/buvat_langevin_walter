@@ -1,0 +1,36 @@
+---
+title: "Untitled"
+author: "BUVAT/LANGEVIN/WALTER"
+date: "02/10/2019"
+output: html_document
+---
+
+Dans tous les cas, l'hyperplan séparateur est défini par l'équation suivante :
+
+<center><img src="texte/images/latex1.png" style="position: relative; width: 326px; height: 96px" alt="image1" /></center>
+
+La fonction g(x) est appelé le classifieur linéaire. Quand toutes les observations sont bien classées on dit que l'échantillon est linéairement séparable.
+
+## Cas linéairement non séparable
+Dans la pratique les données sont raremenent linéairement séparables. Dans ce cas il n’existe pas d’hyperplan capable de séparer correctement les données. On distingue alors deux cas :  
+
+* Soit l'échantillon est presque linéairement séparable c'est-à-dire qu'on peut trouver un hyperplan séparateur optimal en tolérant quelques observations mal classées. Dans ce cas on solutionne le problème par la Soft Margin.
+* Soit l'échantillon n'est pas linéairement séparable. La séparation optimale est non linéaire. La solution à ce problème est le Kernel Trick.
+
+### Soft Margin
+Il s'agit de trouver un compromis entre un hyperplan qui maximise la marge et qui minimise les erreurs de classification. Pour cet arbitrage, on utilise un paramètre de pénalité C. Plus C est grand, plus l'importance est donnée à la minimisation des erreurs de classification par rapport à la maximisation de la marge. Il y a alors un risque de sur-apprentissage.  
+
+A l'inverse, quand C est petit on pénalise moins les erreurs de classification et l'importance est donnée à la maximisation de la marge. On a ici un risque de sous-apprentissage.
+
+
+### Kernel Trick ou astuce du noyau
+Quand les donnée ne sont pas linéairement séparables, il est possible qu'elles le soient dans un espace de plus grande dimension. 
+
+<center><img src="texte/images/image4.png" style="position: relative; width: 616px; height: 375px" alt="image1" /></center>
+
+On transforme d'abord l'espace de représentation des données en un espace de dimension plus grande via une fonction phi. Il esxiste alors une fonction dite de noyau telle que :
+
+<center><img src="texte/images/latex2.png" style="position: relative; width: 231px; height: 46px" alt="image1" /></center>
+
+
+L'astuce réside alors dans le fait que pour implémenter le SVM dans l'espace de plus grande dimension, il n'est pas nécessaire de connaître la fonction phi. Il suffit seulement d'utiliser la fonction de noyau. 
