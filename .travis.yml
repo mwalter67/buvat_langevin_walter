@@ -13,6 +13,7 @@ apt_packages:
   - libgdal-dev
   - libudunits2-dev
   - mesa-common-dev
+  - libglu1-mesa-dev
 
 r_packages:
   - rsconnect
