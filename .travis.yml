@@ -12,6 +12,7 @@ cache:
 apt_packages:
   - libgdal-dev
   - libudunits2-dev
+  - mesa-common-dev
 
 r_packages:
   - rsconnect
