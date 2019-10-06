@@ -10,16 +10,16 @@ Les Support Vector Machine (SVM) - Machine à Vecteurs de Support en français -
 ## Principe
 Imaginons que l’on se place dans un plan à 2 catégories: les points rouges et les points bleus, chacuns dans un côté différent du plan. Supposons qu'un nouveau point entre dans le plan. La question se pose alors de savoir de quel côté du plan le placer. Pour cela, il faut connaître la frontière de séparation (appelée hyperplan séparateur) et déterminer de quel côté de cette dernière placer le point et donc à quelle catégorie il appartient. C'est l'objet du SVM.
 
-<center><img src="image1.png" style="position: relative; width: 419px; height: 314px"  /></center>
+<center><img src="image1.png" style="position: relative; width: 210px; height: 157px"  /></center>
 
 Comme dit précédement, le SVM est un algorithme d'apprentissage automatique. C'est-à-dire qu'au départ, il ne sait pas comment classer les données. C'est en "apprenant" sur les données dites d'apprentissage qu'il sera ensuite capable de classer correctement les dernières entrées.  
 Problème: il existe une multitude d'hyperplans séparateurs possibles.
 
-<center><img src="image2.png" style="position: relative; width: 1526px; height: 320px"  /></center>
+<center><img src="image2.png" style="position: relative; width: 763px; height: 160px"  /></center>
 
 Comment donc sélectionner le meilleur d'entre eux ? Il s'agit en fait de celui qui se place le plus loin possible des points bleus mais aussi des points rouges : c’est la critère de la marge optimale. La marge correspond au double de la distance du point le plus proche de l’hyperplan. Les observations placées sur la marge sont appelés vecteurs de support, d'où le nom de Machine à Vecteurs de Support.
 
-<center><img src="image3.jpg" style="position: relative; width: 400px; height: 395px"  /></center>
+<center><img src="image3.jpg" style="position: relative; width: 200px; height: 197px"  /></center>
 
 ## Formalisation
 Dans un problème à deux dimensions l'hyperplan est une droite. Mais la classification peut aussi se faire pour un problème à 3 dimensions ou plus.
