@@ -56,9 +56,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
                         includeMarkdown("texte/intro.Rmd"),
-                        fluidRow(
-                          column(12,align="center",
-                                 downloadButton("notice", "Téléchargement de la notice"))),
+                        downloadButton("notice", "Téléchargement de la notice"),
                         width=12
                       )
                     ),
@@ -68,9 +66,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       mainPanel(
                         includeMarkdown("texte/svm_p1.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/svm_p1.Rmd"),
-                        fluidRow(
-                          column(12,align="center",
-                           rglwidgetOutput("troisd"))),
+                        rglwidgetOutput("troisd"),
                         includeMarkdown("texte/svm_p2.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/svm_p2.Rmd"),
                         #includeMarkdown(("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/SVM.Rmd")),
