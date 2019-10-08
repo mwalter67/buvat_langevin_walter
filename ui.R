@@ -148,7 +148,7 @@ shinyUI(fluidPage(title="Projet SVM",
                               column(8,align="center",
                                      DT::dataTableOutput("bestsvm", width = 300)
                               )),
-                            includeMarkdown("texte/Best_SVM.Rmd2"),
+                            includeMarkdown("texte/Best_SVM2.Rmd"),
                             #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM2.Rmd"),
                             width=12
                           )
