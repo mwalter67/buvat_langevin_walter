@@ -13,15 +13,15 @@ En cliquant sur le lien, vous serez diriger vers la page Github qui vous permett
 
 ### Remerciements
 
-#### Pour la collecte des données
+__- Pour la collecte des données__
 
 Notre base de données a été collectée et analysée lors d'un projet de recherche de Worldline and the Machine Learning Group <http://mlg.ulb.ac.be> de l'Université Libre de Bruxelles sur le big data mining et la détection de fraude.  
 
-#### Pour les connaissances du SVM  
+__- Pour les connaissances du SVM__  
 
 Nous souhaitons remerciez Christophe Hurlin pour son support de cours sur les Machines à Vecteurs de Support.  
 
-#### Autres  
+__- Autres__  
 
 Nous souhaitons remerciez Jérémy Dudek pour sa démonstration des applications Github et Travis pour permettre le déploiement de ce démonstrateur.  
 

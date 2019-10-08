@@ -9,18 +9,18 @@ Dans tous les cas, l'hyperplan séparateur est défini par l'équation suivante 
 
 <center><img src="latex1.PNG" style="position: relative; width: 326px; height: 96px"  /></center>
 
-La fonction g(x) est appelé le classifieur linéaire. Quand toutes les observations sont bien classées on dit que l'échantillon est linéairement séparable.
+La fonction g(x) est appelé le __classifieur linéaire__. Quand toutes les observations sont bien classées on dit que l'échantillon est __linéairement séparable__.
 
 ## Cas linéairement non séparable
 Dans la pratique les données sont raremenent linéairement séparables. Dans ce cas il n’existe pas d’hyperplan capable de séparer correctement les données. On distingue alors deux cas :  
 
-* Soit l'échantillon est presque linéairement séparable c'est-à-dire qu'on peut trouver un hyperplan séparateur optimal en tolérant quelques observations mal classées. Dans ce cas on solutionne le problème par la Soft Margin.
-* Soit l'échantillon n'est pas linéairement séparable. La séparation optimale est non linéaire. La solution à ce problème est le Kernel Trick.
+* Soit l'échantillon est presque linéairement séparable c'est-à-dire qu'on peut trouver un hyperplan séparateur optimal en tolérant quelques observations mal classées. Dans ce cas on solutionne le problème par la __Soft Margin__.
+* Soit l'échantillon n'est pas linéairement séparable. La séparation optimale est non linéaire. La solution à ce problème est le __Kernel Trick__.
 
 ### Soft Margin
-Il s'agit de trouver un compromis entre un hyperplan qui maximise la marge et qui minimise les erreurs de classification. Pour cet arbitrage, on utilise un paramètre de pénalité C. Plus C est grand, plus l'importance est donnée à la minimisation des erreurs de classification par rapport à la maximisation de la marge. Il y a alors un risque de sur-apprentissage.  
+Il s'agit de trouver un compromis entre un hyperplan qui maximise la marge et qui minimise les erreurs de classification. Pour cet arbitrage, on utilise un __paramètre de pénalité C__. Plus C est grand, plus l'importance est donnée à la minimisation des erreurs de classification par rapport à la maximisation de la marge. Il y a alors un __risque de sur-apprentissage__.  
 
-A l'inverse, quand C est petit on pénalise moins les erreurs de classification et l'importance est donnée à la maximisation de la marge. On a ici un risque de sous-apprentissage.
+A l'inverse, quand C est petit on pénalise moins les erreurs de classification et l'importance est donnée à la maximisation de la marge. On a ici un risque de __sous-apprentissage__.
 
 
 ### Kernel Trick ou astuce du noyau
@@ -28,7 +28,7 @@ Quand les donnée ne sont pas linéairement séparables, il est possible qu'elle
 
 <center><img src="image4.png" style="position: relative; width: 616px; height: 375px"  /></center>
 
-On transforme d'abord l'espace de représentation des données en un espace de dimension plus grande via une fonction phi. Il esxiste alors une fonction dite de noyau telle que :
+On transforme d'abord l'espace de représentation des données en un espace de dimension plus grande via une fonction phi. Il existe alors une __fonction dite de noyau__ telle que :
 
 <center><img src="latex2.PNG" style="position: relative; width: 231px; height: 46px"  /></center>
 

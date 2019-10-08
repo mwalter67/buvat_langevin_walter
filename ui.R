@@ -9,6 +9,7 @@ library(tree)
 library(DT)
 library(corrplot)
 library(rgl)
+library(class)
 
 
 shinyUI(fluidPage(title="Projet SVM",
@@ -18,9 +19,6 @@ shinyUI(fluidPage(title="Projet SVM",
                              color: #333;
                              background-color: #fff;
                              text-align: justify;}'),
-                  tags$style('.col-sm-12{width: 100%;
-                             padding-right: 200px;
-                             padding-left: 200px;}'),
                   
                   
                   tags$style('img{vertical-align: middle;
@@ -31,6 +29,7 @@ shinyUI(fluidPage(title="Projet SVM",
                              height: auto;}'),
                   
                   tags$head(includeCSS("www/app.css")),
+                  #tags$head(includeCSS("C:/Users/mikew/OneDrive/Bureau/buvat_langevin_walter/www/app.css")),
                   #tags$head(includeCSS("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   #tags$head(includeCSS("C:/Users/Julien/Documents/GitHub/buvat_langevin_walter/www/app.css")),
                   #tags$head(includeCSS("C:/Users/util/Documents/GitHub/buvat_langevin_walter/www/app.css")),
@@ -51,16 +50,14 @@ shinyUI(fluidPage(title="Projet SVM",
                   ),
                   
                   
-                  tabsetPanel(
+                  navlistPanel(
                     tabPanel(
                       title="Comment utiliser ce démonstrateur",
                       mainPanel(
                         includeMarkdown("texte/intro.Rmd"),
                         fluidRow(
-                          column(8,align="center",
-                                 downloadButton("notice", "Téléchargement de la notice")
-                          ))
-                        ,
+                          column(12,align="center",
+                                 downloadButton("notice", "Téléchargement de la notice"))),
                         width=12
                       )
                     ),
@@ -70,7 +67,9 @@ shinyUI(fluidPage(title="Projet SVM",
                       mainPanel(
                         includeMarkdown("texte/svm_p1.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/svm_p1.Rmd"),
-                        rglwidgetOutput("troisd"),
+                        fluidRow(
+                          column(12,align="center",
+                                 rglwidgetOutput("troisd"))),
                         includeMarkdown("texte/svm_p2.Rmd"),
                         #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/svm_p2.Rmd"),
                         #includeMarkdown(("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/SVM.Rmd")),
@@ -91,7 +90,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       )
                     ),
                     tabPanel(
-                      title="Intéraction intéractive avec le SVM",
+                      title="Modifier le SVM à votre guise",
                       sidebarLayout(
                         sidebarPanel(
                           selectInput("kernel",
@@ -117,7 +116,7 @@ shinyUI(fluidPage(title="Projet SVM",
                                       multiple=FALSE,
                                       selected=1
                           ),
-                          width=2
+                          width=3
                         ),
                         
                         mainPanel(
@@ -134,10 +133,10 @@ shinyUI(fluidPage(title="Projet SVM",
                     ),
                     
                     tabPanel(
-                      title="Comparaison du SVM avec deux autres méthodes de machines learning",
+                      title="Comparaison du SVM avec d'autres méthodes de machine learning",
                       
-                        
-                      navlistPanel(
+                      
+                      tabsetPanel(
                         tabPanel(
                           "Recherche du meilleur SVM",
                           mainPanel(
@@ -148,7 +147,10 @@ shinyUI(fluidPage(title="Projet SVM",
                             fluidRow(
                               column(8,align="center",
                                      DT::dataTableOutput("bestsvm", width = 300)
-                            ))
+                              )),
+                            includeMarkdown("texte/Best_SVM.Rmd2"),
+                            #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/Best_SVM2.Rmd"),
+                            width=12
                           )
                         ),
                         tabPanel(
@@ -157,7 +159,8 @@ shinyUI(fluidPage(title="Projet SVM",
                             
                             plotOutput("meilleursvm"),
                             plotOutput("concurrent"),
-                            plotOutput("roccomp")
+                            plotOutput("roccomp"),
+                            width=12
                             
                           )
                         ),
@@ -165,28 +168,46 @@ shinyUI(fluidPage(title="Projet SVM",
                           "Arbre de classification",
                           mainPanel(
                             
-                              plotOutput("meilleursvm2"),
-                              plotOutput("concurrent2"),
-                              plotOutput("roccomp2")
+                            plotOutput("meilleursvm2"),
+                            plotOutput("concurrent2"),
+                            plotOutput("roccomp2"),
+                            width = 12
+                            
+                            
+                          )
+                        ),
+                        tabPanel(
+                          "Méthode KNN",
+                          mainPanel(
+                            
+                            selectInput("k",
+                                        "Choix du nombre de voisins",
+                                        choices=c(1,3,5,10,20),
+                                        multiple=FALSE,
+                                        selected=1
+                            ),
+                            plotOutput("meilleursvm3"),
+                            plotOutput("concurrent3"),
+                            plotOutput("roccomp3"),
+                            width = 12
                             
                             
                           )
                         )
                         
                         
-                        
                       )
                     ),
-                    
                     tabPanel(
                       title="Remerciements",
                       mainPanel(
                         includeMarkdown("texte/remerciement.Rmd"),
+                        #includeMarkdown("C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/texte/remerciement.Rmd"),
                         width=12
                       )
                     )
                     
-                    )
                   )
-                  
+)
+
 )
