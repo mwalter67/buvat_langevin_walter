@@ -30,6 +30,7 @@ r_packages:
   - DT
   - corrplot
   - rgl
+  - class
   
 script:
   - R -f deploy.R
