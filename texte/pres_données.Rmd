@@ -52,6 +52,35 @@ Au final, nous conservons les variables explicatives suivantes: __V1, V2, V3, V4
 
 __ATTENTION:__ Le choix de conserver ces variables sont uniquement valables pour notre base de données. En effet, un autre tirage aléatoire aurait pu changer les résultats que nous avons obtenu.
 
+## Indicateurs de performances
+
+Dans le cadre de notre analyse, nous avons fais le choix d'utiliser deux indicateurs: la __matrice de confusion__ et la __courbe ROC__ (Receiver Operating Characteristics). Nous allons donc brièvement vous présenter leurs principes.
+
+### Matrice de confusion
+
+<center><img src="confusion_matrix.png" style="position: relative; width: 500px; height: 165px"  /></center>
+
+Ci-dessus, vous pouvez observer un exemple de matrice de confusion. Définissons les termes que nous utilisons dans notre analyse:  
+
+- __Vrais positifs:__ observation que l'on a prédite positive et qui l'est réellement    
+- __Faux positifs:__ observation que l'on a prédite positive et qui ne l'est pas réellement    
+- __Vrais négatifs:__ observation que l'on a prédite négative et qui l'est réellement      
+- __Faux négatifs:__ observation que l'on a prédite négative et qui ne l'est pas réellement  
+- __Taux de vrais positifs:__ ensemble des vrais positifs rapportés sur le nombre d'observations classées positives  
+- __Taux de faux positifs:__ ensemble des faux positifs rapportés sur le nombre d'observations classées négatives  
+- __Sensibilité:__ taux de vrais positifs que l'on a correctement identifié    
+- __Spécificité:__ taux de vrais négatifs que l'on a correctement identifié    
+- __Taux d'erreur:__ proportion de faux positifs et de faux négatifs sur l'ensemble des observations (compris entre 0 et 1)    
+
+### Courbe ROC  
+
+<center><img src="auc_roc.PNG" style="position: relative; width: 414px; height: 349px"  /></center>
+
+La __courbe ROC__ Receiver Operating Characteristics) est une __mesure de performance d'un modèle__. La courbe ROC trace le taux de vrais positifs en fonctions du taux de faux positifs.  Cette courbe trace toutes les valeurs des vrais positifs et des faux positifs selon différents seuils de classifications. Si nous diminuons notre seuil de classification, cela nous permettra d'augmenter le nombre de faux positifs et de vrais négatifs.  
+
+__L'aire sous la courbe__ (AUC) ou __"Area Under Curve"__ en anglais est une mesure de performance qui représente l'aire située sous la courbe ROC dans le carré allant de (0, 0) à (1, 1).
+
+
 
 
 
