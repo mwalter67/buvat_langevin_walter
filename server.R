@@ -309,12 +309,7 @@ shinyServer(function(input, output) {
   output$notice <- downloadHandler(
     filename = "notice.pdf",
     content = function(file) {
-      tempReport <- file.path("texte/notice.Rmd")
-      file.copy("notice.Rmd", tempReport, overwrite = TRUE)
-      rmarkdown::render(tempReport, output_file = file,
-                        params = params,
-                        envir = new.env(parent = globalenv())
-      )
+      file.copy("texte/notice.pdf", file)
     }
   )
   
