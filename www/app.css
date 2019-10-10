@@ -1,4 +1,4 @@
-﻿body {
+body {
   background-color: #fafafa;
 }
 
@@ -9,7 +9,7 @@
   padding: 20px 0 20px;
   border-bottom: 1px solid #ddd;
   margin: 0 -30px 20px;
-  background-color: #0066ff;
+  background-color: rgb(20,157,213);
 }
 
 #title {
@@ -29,7 +29,7 @@
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover {
   color: #fff;
-  background-color: #0066ff;
+  background-color: rgb(20,157,213);
 }
 
 .nav-pills>li>a {
@@ -40,7 +40,7 @@
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
-  border-top: 2px solid #0066ff;
+  border-top: 2px solid rgb(20,157,213);
   border-bottom: 0;
   font-weight: bold;
 }
@@ -50,7 +50,7 @@
 }
 
 .nav-tabs>li>a {
-  color: #0066ff;
+  color: rgb(20,157,213);
   background-color: #f8f8f8;
   border: 1px solid #dddddd;
 }
