@@ -11,15 +11,15 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Ce démonstrateur comporte 5 pages. Pour chacunes d'entre elles, vous trouverez les explications ci-dessous.
+Ce démonstrateur comporte 6 onglets. Pour chacuns d'entre eux, vous trouverez les explications ci-dessous.
 
 ## Comment utiliser ce démonstrateur
 
-Page d'accueil. Cliquez sur le bouton de téléchargement pour arriver sur cette notice.
+Page d'accueil. Cliquez sur le bouton de téléchargement afin de pouvoir lire sur cette notice.
 
 ## Qu'est ce qu'un SVM?
 
-Si vous n'avez pas de notion en terme de machine learning, nous vous expliquons ici brievement la méthode de machine à vecteur de support (SVM) .Cette courte introduction est inspiré du cours de Christophe Hurlin, que vous pouvez retrouver en intégralité en cliquant le lien ci-dessous:  
+Si vous n'avez pas de notion en terme de machine learning, nous vous expliquons ici brièvement la méthode des machines à vecteur de support (SVM) . Cette courte introduction est inspiré du cours de Christophe Hurlin, que vous pouvez retrouver en intégralité en cliquant sur le lien ci-dessous:  
 <https://sites.google.com/view/christophe-hurlin/teaching-resources/support-vector-machine>.
 
 ## Présentation de nos données
