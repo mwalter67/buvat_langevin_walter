@@ -14,7 +14,7 @@ De plus, on comparera les performances du SVM face à d'autres modèles de Machi
 
 # Page Internet
 
-Vous pourrez accéder à la page Internet de notre projet sur le lien suivant: [https://mickaelwalter.shinyapps.io/buvat_langevin_walter/]
+Vous pourrez accéder à la page Internet de notre projet sur le lien suivant: https://mickaelwalter.shinyapps.io/buvat_langevin_walter/
 
 # Logiciels
 
