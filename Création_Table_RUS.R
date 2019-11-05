@@ -7,6 +7,7 @@ library(ggplot2)
 #Importation de la table de données
 
 data=fread("C:/Users/mikew/OneDrive/Documents/MASTER 2 ESA/S1/SVM/Projet SVM/creditcard.csv",sep=',')
+#data=fread("C:/Users/util/Desktop/M2 ESA/Support Vector Machine/creditcard.csv",sep=',')
 head(data)
 summary(data)
 attach(data)
@@ -23,6 +24,7 @@ table(train$Class)
 test  <-data[-inTrain] 
 
 write.csv(test,"C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",row.names = FALSE)
+#write.csv(test,"C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_test.csv",row.names = FALSE)
 
 nonfraud<-which(train$Class==0)
 fraud<-which(train$Class==1)
@@ -38,5 +40,6 @@ rus_data=train.sub[[1]]
 table(rus_data$Class)
 
 write.csv(rus_data,"C:/Users/mikew/OneDrive/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",row.names = FALSE)
+#write.csv(rus_data,"C:/Users/util/Documents/GitHub/buvat_langevin_walter/creditcard_rus.csv",row.names=FALSE)
 
 
