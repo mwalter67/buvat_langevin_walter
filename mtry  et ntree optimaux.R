@@ -79,6 +79,10 @@ for (j in c(2550,2551,2552,2553,2554,2555,2556,2557,2558,2559)){
 rssm
 #Le nombre d'arbre optimal est donc de 2551
 #Dans l'application, pour la forêt, on utilisera mtry=1 et ntree=2551
+rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=1,ntree=2551)
+rf.rus.pred=predict(rf.rus,newdata=test2,type="class")
+table(rf.rus.pred,Class2)
+
 
 
 

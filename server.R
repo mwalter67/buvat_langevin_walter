@@ -5,7 +5,7 @@ library(data.table)
 library(pROC)
 library(rmarkdown)
 library(caret)
-library(tree)
+library(randomForest)
 library(DT)
 library(corrplot)
 library(rgl)
@@ -203,7 +203,7 @@ shinyServer(function(input, output) {
     
   })
   
-  #### Création des graphiques pour comparaison SVM et arbre de classification
+  #### Création des graphiques pour comparaison SVM et Random forest
   
   output$concurrent2 <-renderPlot({
     Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
@@ -215,16 +215,16 @@ shinyServer(function(input, output) {
     test2=test2[,-31]
     
     
-    tree.rus=tree(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2)
+    rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=1,ntree=2551)
     
     set.seed(2501)
     
-    tree.pred=predict(tree.rus,test2,type="class")
-    table(tree.pred,Class2)
+    rf.pred=predict(rf.rus,test2,type="class")
+    table(rf.pred,Class2)
     
     Class4=test2$Class2
-    conf.tree=confusionMatrix(data=tree.pred,reference=Class4)
-    plot.confusion(conf.tree,"Matrice de confusion de l'arbre de classification")
+    conf.rf=confusionMatrix(data=rf.pred,reference=Class4)
+    plot.confusion(conf.rf,"Matrice de confusion du Random forest")
   })
   
   output$roccomp2 <-renderPlot({
@@ -238,13 +238,13 @@ shinyServer(function(input, output) {
     Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
     test2=data.frame(test,Class2)
     test2=test2[,-31]
-    tree.rus=tree(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2)
+    rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=1,ntree=2551)
     set.seed(2501)
-    tree.pred=predict(tree.rus,test2,type="class")
+    rf.pred=predict(rf.rus,test2,type="class")
     
     plot.roc(test$Class,as.numeric(pred_essai),main="Comparaison des courbes ROC", percent=TRUE, col="#1c61b6", print.auc=T,  print.auc.y=40)
-    plot.roc(test2$Class2,as.numeric(tree.pred), percent=TRUE, col="#008600",add=T, print.auc=T)
-    legend("bottomright", legend=c("SVM", "Arbre de classification"), col=c("#1c61b6", "#008600"), lwd=2)
+    plot.roc(test2$Class2,as.numeric(rf.pred), percent=TRUE, col="#008600",add=T, print.auc=T)
+    legend("bottomright", legend=c("SVM", "Random forest"), col=c("#1c61b6", "#008600"), lwd=2)
   })
   
   #### Création des graphiques pour comparaison SVM et KNN

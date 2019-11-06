@@ -5,7 +5,7 @@ library(data.table)
 library(pROC)
 library(rmarkdown)
 library(caret)
-library(tree)
+library(randomForest)
 library(DT)
 library(corrplot)
 library(rgl)
@@ -165,7 +165,7 @@ shinyUI(fluidPage(title="Projet SVM",
                           )
                         ),
                         tabPanel(
-                          "Arbre de classification",
+                          "Random forest",
                           mainPanel(
                             
                             plotOutput("meilleursvm2"),
