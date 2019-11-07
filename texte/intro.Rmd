@@ -9,7 +9,7 @@ output: html_document
 
 ## Préambule
 
-Avant que vous utilisez ce démonstrateur, nous souhaitons vous remerciez de la confiance que vous nous avez offerte pour ce projet.  
+Avant que vous utilisiez ce démonstrateur, nous souhaitons vous remerciez de la confiance que vous nous avez offerte pour ce projet.  
 
 Dans le cadre de votre secteur d'activité, la protection des clients est une nécessité absolue afin de pouvoir conserver leur confiance. C'est pour cela que votre banque a comme objectif de détecter toutes les transactions frauduleuses commises sur les cartes de crédits de vos clients.  
 

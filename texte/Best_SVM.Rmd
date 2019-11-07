@@ -9,5 +9,5 @@ output: html_document
 
 ## Meilleur SVM
 
-Lors de l'onglet précédent, vous avez pu modifier les paramètres du SVM afin de pouvoir comprendre l'importance de ceux-ci. L'objectif de cet onglet est de pouvoir comparer les performances de notre SVM face à d'autres  concurrents: une __régression logistique__, un __arbre de classification__ et la __méthode KNN__. Ci-dessous, nous vous présentons un tableau montrant les performances de notre SVM selon le choix de ses paramètres. 
+Lors de l'onglet précédent, vous avez pu modifier les paramètres du SVM afin de pouvoir comprendre l'importance de ceux-ci. L'objectif de cet onglet est de pouvoir comparer les performances de notre SVM face à d'autres  concurrents: une __régression logistique__, un __random forest__ et la __méthode KNN__. Ci-dessous, nous vous présentons un tableau montrant les performances de notre SVM selon le choix de ses paramètres. 
 

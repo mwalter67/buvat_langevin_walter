@@ -15,7 +15,7 @@ Ce démonstrateur comporte 6 onglets. Pour chacuns d'entre eux, vous trouverez l
 
 ## Comment utiliser ce démonstrateur
 
-Page d'accueil. Cliquez sur le bouton de téléchargement afin de pouvoir lire sur cette notice.
+Page d'accueil. Cliquez sur le bouton de téléchargement afin de pouvoir lire cette notice.
 
 ## Qu'est ce qu'un SVM?
 
@@ -57,9 +57,9 @@ Page d'introduction de l'onglet. On explique brievement la comparaison des méth
 
 On compare les résulats du SVM à ceux de la régression logistique.
 
-### Arbre de régression
+### Random forest
 
-On compare les résultat du SVM à ceux de l'arbre de classification.
+On compare les résultat du SVM à ceux du random forest. Dans cette page, vous pouvez modifier le nombre de prédicteurs qui seront utilisés lors de l'éstimation (entre 1 et 18 prédicteurs), ainsi que le nombre d'arbres qui constitueront la fôret (entre 1000 et 5000 arbres).
 
 ### Méthode KNN
 

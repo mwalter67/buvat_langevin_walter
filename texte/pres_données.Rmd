@@ -10,16 +10,16 @@ output:
 
 Dans le cadre de notre démonstrateur, nous avons fait le choix d'utiliser une base de données issue d'un site open source. Le base de données se nomme __Credit Card Fraud Detection__. Elle est disponible sur ce site <https://www.kaggle.com/mlg-ulb/creditcardfraud>.  
 
-Cette base de données contient la liste de toute les transactions faite par carte de crédit en Septembre 2013 par des clients européens possédant une carte de crédit. De plus, elle fait la distinction entre les transactions frauduleuses et les transactions légales.  
+Cette base de données contient la liste de toutes les transactions faite par carte de crédit en Septembre 2013 par des clients européens possédant une carte de crédit. De plus, elle fait la distinction entre les transactions frauduleuses et les transactions légales.  
 
 Notre jeu de données contient __284807 observations__ ainsi que les __31 variables__ suivantes:
 
 - __Amount__: Coût de la transaction     
 - __V1 à V28__: variables qui ont été obtenues à l'aide d'une ACP et qui ont été anonymisées pour des raisons de confidentialité.      
-- __Time__: seconde entre la premiere transaction et la transaction en question.    
+- __Time__: secondes entre la premiere transaction et la transaction en question.    
 - __Class__: prend pour modalité 1 si la transaction est frauduleuse et 0 sinon. Il s'agit de notre variable de réponse.  
 
-On cherche à construire un modèle qui prédit la fraude ou non d'un client en fonction des autres variables par la méthode de __machine à vecteur de support__ (SVM).
+On cherche à construire un modèle qui prédit la fraude ou non d'un client en fonction des autres variables par la méthode de __machine à vecteurs de support__ (SVM).
 
 ## Problèmes de déséquilibre
 
@@ -27,8 +27,8 @@ Sur les 284807 observations, nous pouvons seulement observer __492 cas de fraude
 
 Cependant, il existe deux types de méthodes pour répondre a cette problèmatique: 
 
-- La __méthode Random Under Sampling__ (RUS): cette méthode consiste à retirer une partie des observations non frauduleuses de l'échantillion d'apprentissage de manière aléatoire, afin qu'elle ne représente plus qu'une certaine proportion fixé de l'échantillon. Elle a pour avantage de limiter le temps d'exécution de l'algorithme puisqu'elle utilise beaucoup moins de ressources. En effet, notre base  de données est beaucoup plus petite par rapport à la base de données originale. En revanche, on perd de l'information. Pour éviter ce problème, il existe des méthodes d'undersampling telle que la One-Sided Selection (OSS) qui consiste à éliminer certains individus de la classe majoritaire par la méthode des voisins les plus proches.  
-- La __méthode Random Over Sampling__ (ROS): cette méthode consiste à augmenter le nombre d'individus frauduleux par une duplication aléatoire, afin qu'ils représentent une certaine proportion fixé de l'échantillon d'apprentissage.Dans cette méthode, on ne perd aucune information et donc les résultats seront meilleurs. En revanche, on a un risque d'overfitting liée à la présence de multiple individus identiques.Pour éviter ce risque, on peut recourir à la méthode du __SMOTE__ (Synthetic Minority Over-sampling Technique), méthode d'oversampling qui consiste à créer des individus frauduleux à partir des individus déja existant.  
+- La __méthode Random Under Sampling__ (RUS): cette méthode consiste à retirer une partie des observations non frauduleuses de l'échantillion d'apprentissage de manière aléatoire, afin qu'elles ne représentent plus qu'une certaine proportion fixé de l'échantillon. Elle a pour avantage de limiter le temps d'exécution de l'algorithme puisqu'elle utilise beaucoup moins de ressources. En effet, notre base  de données est beaucoup plus petite par rapport à la base de données originale. En revanche, on perd de l'information. Pour éviter ce problème, il existe des méthodes d'undersampling telle que la One-Sided Selection (OSS) qui consiste à éliminer certains individus de la classe majoritaire par la méthode des voisins les plus proches.  
+- La __méthode Random Over Sampling__ (ROS): cette méthode consiste à augmenter le nombre d'individus frauduleux par une duplication aléatoire, afin qu'ils représentent une certaine proportion fixé de l'échantillon d'apprentissage.Dans cette méthode, on ne perd aucune information et donc les résultats seront meilleurs. En revanche, on a un risque d'overfitting liée à la présence de multiples individus identiques.Pour éviter ce risque, on peut recourir à la méthode du __SMOTE__ (Synthetic Minority Over-sampling Technique), méthode d'oversampling qui consiste à créer des individus frauduleux à partir des individus déja existant.  
 
 La méthode d'oversampling par SMOTE est jugé de manière général comme la plus performante.
 
@@ -38,7 +38,7 @@ Mais viens notre second problème, technique cette fois: notre jeu de données r
 
 <center><img src="explication_bdd.PNG" style="position: relative; width: 568px; height: 623px"  /></center>
 
-Nous avons décider de travailler avec un __ratio 70/30__ pour nos échantillon d'apprentissage et de validation. Ensuite, lors de la modification de l'échantillon d'apprentissage via Random Under Sampling, nous avons fait le choix d'avoir aussi un __ratio 70/30__ entre les transactions frauduleuses et non frauduleuses. 
+Nous avons décider de travailler avec un __ratio 70/30__ pour nos échantillons d'apprentissage et de validation. Ensuite, lors de la modification de l'échantillon d'apprentissage via Random Under Sampling, nous avons fait le choix d'avoir aussi un __ratio 70/30__ entre les transactions frauduleuses et non frauduleuses. 
 
 Finalement, on travaillera sur un échantillon d'apprentissage avec __348 transactions frauduleuses__ et  __810 transactions non frauduleuses__, soit un total de __1158 observations__. De plus, notre échantillon de validation possédera 85442 transactions avec 144 transactions frauduleuses, soit 0,17% de l'échantillon.  
 
@@ -46,7 +46,7 @@ Avant de procéder à l'estimation du SVM, nous voulons savoir quelles sont les 
 
 <center><img src="corr.png" style="position: relative; width: 976px; height: 540px"  /></center>  
 
-Sur le graphique, nous allons nous focaliser sur la dernières lignes. On peut observer les corrélations entre notre variable de réponse Class et les variables explicatives. Toutes les corrélations qui ne sont pas significatives sont __barrées par une croix__.  
+Sur le graphique, nous allons nous focaliser sur la dernière ligne. On peut observer les corrélations entre notre variable de réponse Class et les variables explicatives. Toutes les corrélations qui ne sont pas significatives sont __barrées par une croix__.  
 
 Au final, nous conservons les variables explicatives suivantes: __V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V14, V16, V17, V18, V19, V21__.  
 

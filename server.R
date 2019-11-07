@@ -213,9 +213,13 @@ shinyServer(function(input, output) {
     Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
     test2=data.frame(test,Class2)
     test2=test2[,-31]
+    x=input$x
+    x=as.numeric(x)
+    y=input$y
+    y=as.numeric(y)
     
     
-    rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=1,ntree=2551)
+    rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=x,ntree=y)
     
     set.seed(2501)
     
@@ -232,13 +236,19 @@ shinyServer(function(input, output) {
     svm_resample=svm(Class~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21 , data=resample, kernel=input$kernel, type="C-classification", cost=input$cout, degree=input$deg )
     pred_essai=predict(svm_resample, newdata=test)
     
+    
     Class2=ifelse(Class==0,"0:No fraud","1:Fraud")
     resample2=data.frame(resample,Class2)
     resample2=resample2[,-31]
     Class2=ifelse(test$Class==0,"0:No fraud", "1:Fraud")
     test2=data.frame(test,Class2)
     test2=test2[,-31]
-    rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=1,ntree=2551)
+    x=input$x
+    x=as.numeric(x)
+    y=input$y
+    y=as.numeric(y)
+    
+    rf.rus=randomForest(Class2~V1+V2+V3+V4+V5+V6+V7+V8+V9+V10+V11+V12+V14+V16+V17+V18+V19+V21,resample2,mtry=x,ntree=y)
     set.seed(2501)
     rf.pred=predict(rf.rus,test2,type="class")
     

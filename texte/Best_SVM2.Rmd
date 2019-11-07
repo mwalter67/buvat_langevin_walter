@@ -5,6 +5,6 @@
 output: html_document
 ---
 
-Avec ce tableau, vous allez pouvoir observer que les SVM utilisant un noyau polynomial obtiennent des taux d'erreurs relativement faible. Cependant, ils ont une AUC faible face aux autres SVM. En faisant, un compromis entre le taux d'erreur et l'AUC, le __meilleur SVM__ que l'on peut obtenir avec les choix qui sont disponible est le __SVM obtenu avec un noyau linéaire et un coût de pénalisation de 1__.  
+Avec ce tableau, vous allez pouvoir observer que les SVM utilisant un noyau polynomial obtiennent des taux d'erreurs relativements faibles. Cependant, ils ont une AUC faible face aux autres SVM. En faisant, un compromis entre le taux d'erreur et l'AUC, le __meilleur SVM__ que l'on peut obtenir avec les choix qui sont disponibles est le __SVM obtenu avec un noyau linéaire et un coût de pénalisation de 1__.  
 
 Si vous souhaitez utilisez le "meilleur" SVM pour la comparaison face aux autres méthodes de machine learning, vous devez revenir à l'onglet précédent et choisir les paramètres associés à ce SVM. 

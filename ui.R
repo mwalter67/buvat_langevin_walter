@@ -168,6 +168,18 @@ shinyUI(fluidPage(title="Projet SVM",
                           "Random forest",
                           mainPanel(
                             
+                            selectInput("x",
+                                        "Choix du nombre de predicteurs",
+                                        choices=1:18,
+                                        multiple=FALSE,
+                                        selected=1
+                            ),
+                            selectInput("y",
+                                        "Choix du nombre d'arbres dans la foret",
+                                        choices=c(500,1000,1500,2000,2500,3000,3500,4000,4500,5000),
+                                        multiple=FALSE,
+                                        selected=2500
+                            ),
                             plotOutput("meilleursvm2"),
                             plotOutput("concurrent2"),
                             plotOutput("roccomp2"),
