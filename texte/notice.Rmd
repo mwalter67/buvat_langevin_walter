@@ -59,7 +59,7 @@ On compare les résulats du SVM à ceux de la régression logistique.
 
 ### Random forest
 
-On compare les résultat du SVM à ceux du random forest. Dans cette page, vous pouvez modifier le nombre de prédicteurs qui seront utilisés lors de l'éstimation (entre 1 et 18 prédicteurs), ainsi que le nombre d'arbres qui constitueront la fôret (entre 1000 et 5000 arbres).
+On compare les résultat du SVM à ceux du random forest. Dans cette page, vous pouvez modifier le nombre de prédicteurs qui seront utilisés lors de l'éstimation (entre 1 et 18 prédicteurs), ainsi que le nombre d'arbres qui constitueront la fôret (entre 500 et 5000 arbres). Les paramètres initiaux correspondent aux critères optimaux pour cette méthode.
 
 ### Méthode KNN
 
