@@ -5,14 +5,14 @@ date: "02/10/2019"
 output: html_document
 ---
 
-Les __Support Vector Machine__ (SVM) - __Machine à Vecteurs de Support__ en français - constituent un __algorithme d’apprentissage automatique__ utilisé pour les problèmes de classification. 
+Les __Support Vector Machine__ (SVM) - __Machines à Vecteurs de Support__ en français - constituent un __algorithme d’apprentissage automatique__ utilisé pour les problèmes de classification. 
 
 ## Principe
-Imaginons que l’on se place dans un plan à 2 catégories: les points rouges et les points bleus, chacuns dans un côté différent du plan. Supposons qu'un nouveau point entre dans le plan. La question se pose alors de savoir de quel côté du plan le placer. Pour cela, il faut connaître la __frontière de séparation__ (appelée __hyperplan séparateur__) et déterminer de quel côté de cette dernière placer le point et donc à quelle catégorie il appartient. C'est l'objet du SVM.
+Imaginons que l’on se place dans un plan à 2 catégories: les points rouges et les points bleus, chacun dans un côté différent du plan. Supposons qu'un nouveau point entre dans le plan. La question se pose alors de savoir de quel côté du plan le placer. Pour cela, il faut connaître la __frontière de séparation__ (appelée __hyperplan séparateur__) et déterminer de quel côté de cette dernière placer le point et donc à quelle catégorie il appartient. C'est l'objet du SVM.
 
 <center><img src="image1.png" style="position: relative; width: 210px; height: 157px"  /></center>
 
-Comme dit précédement, le SVM est un algorithme d'apprentissage automatique. C'est-à-dire qu'au départ, il ne sait pas comment classer les données. C'est en "apprenant" sur les données dites d'apprentissage qu'il sera ensuite capable de classer correctement les dernières entrées.  
+Comme dit précédemment, le SVM est un algorithme d'apprentissage automatique. C'est-à-dire qu'au départ, il ne sait pas comment classer les données. C'est en "apprenant" sur les données dites d'apprentissage qu'il sera ensuite capable de classer correctement les dernières entrées.  
 Problème: il existe une multitude d'hyperplans séparateurs possibles.
 
 <center><img src="image2.png" style="position: relative; width: 763px; height: 160px"  /></center>

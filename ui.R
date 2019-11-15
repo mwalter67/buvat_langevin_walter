@@ -39,10 +39,10 @@ shinyUI(fluidPage(title="Projet SVM",
                   
                   div(id = "header",
                       div(id = "title",
-                          "Implémentation d'un SVM dans le cadre d'un risque à la fraude"
+                          "Implémentation de SVM dans le cadre d'un risque à la fraude"
                       ),
                       div(id = "subtitle",
-                          "Démonstrateur crée par",
+                          "Démonstrateur créé par",
                           tags$a(href = "mailto:mailto:antoinebuvat74@gmail.com", "BUVAT Antoine"),",",
                           tags$a(href = "mailto:mailto:langevin.julien@gmail.com", "LANGEVIN Julien"), "et ",
                           tags$a(href = "mailto:mailto:mikewalter@hotmail.fr", "WALTER Mickaël")
@@ -62,7 +62,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       )
                     ),
                     tabPanel(
-                      title="Qu'est ce qu'un SVM?",
+                      title="Les SVM: qu'est-ce que c'est?",
                       
                       mainPanel(
                         includeMarkdown("texte/svm_p1.Rmd"),
@@ -90,7 +90,7 @@ shinyUI(fluidPage(title="Projet SVM",
                       )
                     ),
                     tabPanel(
-                      title="Modifier le SVM à votre guise",
+                      title="Modifier les SVM à votre guise",
                       sidebarLayout(
                         sidebarPanel(
                           selectInput("kernel",
@@ -133,7 +133,7 @@ shinyUI(fluidPage(title="Projet SVM",
                     ),
                     
                     tabPanel(
-                      title="Comparaison du SVM avec d'autres méthodes de machine learning",
+                      title="Comparaison des SVM avec d'autres méthodes de machine learning",
                       
                       
                       tabsetPanel(

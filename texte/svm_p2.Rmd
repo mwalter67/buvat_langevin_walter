@@ -12,7 +12,7 @@ Dans tous les cas, l'hyperplan séparateur est défini par l'équation suivante 
 La fonction g(x) est appelé le __classifieur linéaire__. Quand toutes les observations sont bien classées on dit que l'échantillon est __linéairement séparable__.
 
 ## Cas linéairement non séparable
-Dans la pratique les données sont raremenent linéairement séparables. Dans ce cas il n’existe pas d’hyperplan capable de séparer correctement les données. On distingue alors deux cas :  
+Dans la pratique les données sont rarement linéairement séparables. Dans ce cas il n’existe pas d’hyperplan capable de séparer correctement les données. On distingue alors deux cas :  
 
 * Soit l'échantillon est presque linéairement séparable c'est-à-dire qu'on peut trouver un hyperplan séparateur optimal en tolérant quelques observations mal classées. Dans ce cas on solutionne le problème par la __Soft Margin__.
 * Soit l'échantillon n'est pas linéairement séparable. La séparation optimale est non linéaire. La solution à ce problème est le __Kernel Trick__.
@@ -20,11 +20,11 @@ Dans la pratique les données sont raremenent linéairement séparables. Dans ce
 ### Soft Margin
 Il s'agit de trouver un compromis entre un hyperplan qui maximise la marge et qui minimise les erreurs de classification. Pour cet arbitrage, on utilise un __paramètre de pénalité C__. Plus C est grand, plus l'importance est donnée à la minimisation des erreurs de classification par rapport à la maximisation de la marge. Il y a alors un __risque de sur-apprentissage__.  
 
-A l'inverse, quand C est petit on pénalise moins les erreurs de classification et l'importance est donnée à la maximisation de la marge. On a ici un risque de __sous-apprentissage__.
+À l'inverse, quand C est petit on pénalise moins les erreurs de classification et l'importance est donnée à la maximisation de la marge. On a ici un risque de __sous-apprentissage__.
 
 
 ### Kernel Trick ou astuce du noyau
-Quand les donnée ne sont pas linéairement séparables, il est possible qu'elles le soient dans un espace de plus grande dimension. 
+Quand les données ne sont pas linéairement séparables, il est possible qu'elles le soient dans un espace de plus grandes dimensions. 
 
 <center><img src="image4.png" style="position: relative; width: 616px; height: 375px"  /></center>
 

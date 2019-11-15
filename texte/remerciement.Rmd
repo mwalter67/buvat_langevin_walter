@@ -7,7 +7,7 @@ output: html_document
 
 ### Lien Github
 
-En cliquant sur le lien, vous serez diriger vers la page Github qui vous permettra de voir les codes qui ont permis de créer ce démonstrateur: <https://github.com/mwalter67/buvat_langevin_walter>
+En cliquant sur le lien, vous serez dirigé vers la page Github qui vous permettra de voir les codes qui ont permis de créer ce démonstrateur: <https://github.com/mwalter67/buvat_langevin_walter>
 
 
 
@@ -19,13 +19,13 @@ Notre base de données a été collectée et analysée lors d'un projet de reche
 
 __- Pour les connaissances du SVM__  
 
-Nous souhaitons remerciez Christophe Hurlin pour son support de cours sur les Machines à Vecteurs de Support.  
+Nous souhaitons remercier Christophe Hurlin pour son support de cours sur les Machines à Vecteurs de Support.  
 
 __- Autres__  
 
-Nous souhaitons remerciez Jérémy Dudek pour sa démonstration des applications Github et Travis pour permettre le déploiement de ce démonstrateur.  
+Nous souhaitons remercier Jérémy Dudek pour sa démonstration des applications Github et Travis pour permettre le déploiement de ce démonstrateur.  
 
-Nous souhaitons aussi remerciez toutes les personnes qui ont développez les packages R que nous avons utilisés durant ce projet.
+Nous souhaitons aussi remerciez toutes les personnes qui ont développé les packages R que nous avons utilisés durant ce projet.
 
 
 

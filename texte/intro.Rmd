@@ -9,11 +9,11 @@ output: html_document
 
 ## Préambule
 
-Avant que vous utilisiez ce démonstrateur, nous souhaitons vous remerciez de la confiance que vous nous avez offerte pour ce projet.  
+Avant que vous utilisiez ce démonstrateur, nous souhaitons vous remercier de la confiance que vous nous avez offerte pour ce projet.  
 
-Dans le cadre de votre secteur d'activité, la protection des clients est une nécessité absolue afin de pouvoir conserver leur confiance. C'est pour cela que votre banque a comme objectif de détecter toutes les transactions frauduleuses commises sur les cartes de crédits de vos clients.  
+Dans le cadre de votre secteur d'activité, la protection des clients est une nécessité absolue afin de pouvoir conserver leur confiance. C'est pour cela que votre banque a comme objectif de détecter toutes les transactions frauduleuses commises sur les cartes de crédit de vos clients.  
 
-Vous nous avez contacté car vous souhaitez améliorer votre modèle de détection de fraude par la méthode des machines à vecteur de support. Avec l'aide de ce démonstrateur, nous allons vous expliquer le fonctionnement des machines à vecteurs de support ainsi que leur implémentation avec le logiciel R. 
+Vous nous avez contactés car vous souhaitez améliorer votre modèle de détection de fraude par la méthode des machines à vecteur de support. Avec l'aide de ce démonstrateur, nous allons vous expliquer le fonctionnement des machines à vecteurs de support ainsi que leur implémentation avec le logiciel R. 
 
-Ci dessous, vous pourrez télécharger une notice vous expliquant le fonctionnement de ce démonstrateur:
+Ci-dessous, vous pourrez télécharger une notice vous expliquant le fonctionnement de ce démonstrateur:
 

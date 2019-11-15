@@ -8,41 +8,41 @@ output:
 ---
 ## Données brutes
 
-Dans le cadre de notre démonstrateur, nous avons fait le choix d'utiliser une base de données issue d'un site open source. Le base de données se nomme __Credit Card Fraud Detection__. Elle est disponible sur ce site <https://www.kaggle.com/mlg-ulb/creditcardfraud>.  
+Dans le cadre de notre démonstrateur, nous avons fait le choix d'utiliser une base de données issue d'un site open source. La base de données se nomme __Credit Card Fraud Detection__. Elle est disponible sur ce site <https://www.kaggle.com/mlg-ulb/creditcardfraud>.  
 
-Cette base de données contient la liste de toutes les transactions faite par carte de crédit en Septembre 2013 par des clients européens possédant une carte de crédit. De plus, elle fait la distinction entre les transactions frauduleuses et les transactions légales.  
+Cette base de données contient la liste de toutes les transactions faite par carte de crédit en septembre 2013 par des clients européens possédant une carte de crédit. De plus, elle fait la distinction entre les transactions frauduleuses et les transactions légales.  
 
 Notre jeu de données contient __284807 observations__ ainsi que les __31 variables__ suivantes:
 
 - __Amount__: Coût de la transaction     
 - __V1 à V28__: variables qui ont été obtenues à l'aide d'une ACP et qui ont été anonymisées pour des raisons de confidentialité.      
-- __Time__: secondes entre la premiere transaction et la transaction en question.    
+- __Time__: secondes entre la première transaction et la transaction en question.    
 - __Class__: prend pour modalité 1 si la transaction est frauduleuse et 0 sinon. Il s'agit de notre variable de réponse.  
 
-On cherche à construire un modèle qui prédit la fraude ou non d'un client en fonction des autres variables par la méthode de __machine à vecteurs de support__ (SVM).
+On cherche à construire un modèle qui prédit la fraude ou non d'un client en fonction des autres variables par la méthode des __machines à vecteurs de support__ (SVM).
 
 ## Problèmes de déséquilibre
 
-Sur les 284807 observations, nous pouvons seulement observer __492 cas de fraude__, soit __0.172%__. En effet, la fraude correspond à un évenement rare et c'est pour cela que notre base de données est donc fortement déséquilibrée.
+Sur les 284807 observations, nous pouvons seulement observer __492 cas de fraude__, soit __0.172%__. En effet, la fraude correspond à un événement rare et c'est pour cela que notre base de données est donc fortement déséquilibrée.
 
-Cependant, il existe deux types de méthodes pour répondre a cette problèmatique: 
+Cependant, il existe deux types de méthodes pour répondre à cette problématique: 
 
-- La __méthode Random Under Sampling__ (RUS): cette méthode consiste à retirer une partie des observations non frauduleuses de l'échantillion d'apprentissage de manière aléatoire, afin qu'elles ne représentent plus qu'une certaine proportion fixé de l'échantillon. Elle a pour avantage de limiter le temps d'exécution de l'algorithme puisqu'elle utilise beaucoup moins de ressources. En effet, notre base  de données est beaucoup plus petite par rapport à la base de données originale. En revanche, on perd de l'information. Pour éviter ce problème, il existe des méthodes d'undersampling telle que la One-Sided Selection (OSS) qui consiste à éliminer certains individus de la classe majoritaire par la méthode des voisins les plus proches.  
+- La __méthode Random Under Sampling__ (RUS): cette méthode consiste à retirer une partie des observations non frauduleuses de l'échantillon d'apprentissage de manière aléatoire, afin qu'elles ne représentent plus qu'une certaine proportion fixé de l'échantillon. Elle a pour avantage de limiter le temps d'exécution de l'algorithme puisqu'elle utilise beaucoup moins de ressources. En effet, notre base  de données est beaucoup plus petite par rapport à la base de données originale. En revanche, on perd de l'information. Pour éviter ce problème, il existe des méthodes d'under sampling tel que la One-Sided Selection (OSS) qui consiste à éliminer certains individus de la classe majoritaire par la méthode des voisins les plus proches.  
 - La __méthode Random Over Sampling__ (ROS): cette méthode consiste à augmenter le nombre d'individus frauduleux par une duplication aléatoire, afin qu'ils représentent une certaine proportion fixé de l'échantillon d'apprentissage.Dans cette méthode, on ne perd aucune information et donc les résultats seront meilleurs. En revanche, on a un risque d'overfitting liée à la présence de multiples individus identiques.Pour éviter ce risque, on peut recourir à la méthode du __SMOTE__ (Synthetic Minority Over-sampling Technique), méthode d'oversampling qui consiste à créer des individus frauduleux à partir des individus déja existant.  
 
-La méthode d'oversampling par SMOTE est jugé de manière général comme la plus performante.
+La méthode d'over sampling par SMOTE est jugé de manière générale comme la plus performante.
 
 ## Nos modifications 
 
-Mais viens notre second problème, technique cette fois: notre jeu de données requiert énormément de ressources. Notre objectif étant de construire un démonstrateur simple et ludique de la méthode de __machine à vecteur de support__ (SVM), nous avons fait le choix de modifier nos données par undersampling en utilisant __la méthode du Random Under Sampling__ (RUS). Ci-dessous vous observerez la façon dont nous avons procéder: 
+Mais viens notre second problème, technique cette fois: notre jeu de données requiert énormément de ressources. Notre objectif étant de construire un démonstrateur simple et ludique de la méthode des __machines à vecteurs de support__ (SVM), nous avons fait le choix de modifier nos données par under sampling en utilisant __la méthode du Random Under Sampling__ (RUS). Ci-dessous vous observerez la façon dont nous avons procédé: 
 
 <center><img src="explication_bdd.PNG" style="position: relative; width: 568px; height: 623px"  /></center>
 
-Nous avons décider de travailler avec un __ratio 70/30__ pour nos échantillons d'apprentissage et de validation. Ensuite, lors de la modification de l'échantillon d'apprentissage via Random Under Sampling, nous avons fait le choix d'avoir aussi un __ratio 70/30__ entre les transactions frauduleuses et non frauduleuses. 
+Nous avons décidé de travailler avec un __ratio 70/30__ pour nos échantillons d'apprentissage et de validation. Ensuite, lors de la modification de l'échantillon d'apprentissage via Random Under Sampling, nous avons fait le choix d'avoir aussi un __ratio 70/30__ entre les transactions frauduleuses et non frauduleuses. 
 
 Finalement, on travaillera sur un échantillon d'apprentissage avec __348 transactions frauduleuses__ et  __810 transactions non frauduleuses__, soit un total de __1158 observations__. De plus, notre échantillon de validation possédera 85442 transactions avec 144 transactions frauduleuses, soit 0,17% de l'échantillon.  
 
-Avant de procéder à l'estimation du SVM, nous voulons savoir quelles sont les variables les plus importantes qui expliquent notre variable de réponse Class. Avec cet objectif en tête, nous avons décider de faire une __matrice de corrélation__ sur notre base de données d'apprentissage Random Under Sampling. De plus, nous testons la __significativité des p-values__ à un __seuil de 5%__. Toutes les corrélations ayant une __p-value supérieur à 5%__ seront considérées comme __non significatives__. On va donc les exclure de notre analyse.
+Avant de procéder à l'estimation des SVM, nous voulons savoir quelles sont les variables les plus importantes qui expliquent notre variable de réponse Class. Avec cet objectif en tête, nous avons décidé de faire une __matrice de corrélation__ sur notre base de données d'apprentissage Random Under Sampling. De plus, nous testons la __significativité des p-values__ à un __seuil de 5%__. Toutes les corrélations ayant une __p-value supérieur à 5%__ seront considérées comme __non significatives__. On va donc les exclure de notre analyse.
 
 <center><img src="corr.png" style="position: relative; width: 976px; height: 540px"  /></center>  
 
@@ -50,11 +50,11 @@ Sur le graphique, nous allons nous focaliser sur la dernière ligne. On peut obs
 
 Au final, nous conservons les variables explicatives suivantes: __V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V14, V16, V17, V18, V19, V21__.  
 
-__ATTENTION:__ Le choix de conserver ces variables sont uniquement valables pour notre base de données. En effet, un autre tirage aléatoire aurait pu changer les résultats que nous avons obtenu.
+__ATTENTION:__ Le choix de conserver ces variables est uniquement valables pour notre base de données. En effet, un autre tirage aléatoire aurait pu changer les résultats que nous avons obtenus.
 
 ## Indicateurs de performances
 
-Dans le cadre de notre analyse, nous avons fais le choix d'utiliser deux indicateurs: la __matrice de confusion__ et la __courbe ROC__ (Receiver Operating Characteristics). Nous allons donc brièvement vous présenter leurs principes.
+Dans le cadre de notre analyse, nous avons fait le choix d'utiliser deux indicateurs: la __matrice de confusion__ et la __courbe ROC__ (Receiver Operating Characteristics). Nous allons donc brièvement vous présenter leurs principes.
 
 ### Matrice de confusion
 
@@ -62,10 +62,10 @@ Dans le cadre de notre analyse, nous avons fais le choix d'utiliser deux indicat
 
 Ci-dessus, vous pouvez observer un exemple de matrice de confusion. Définissons les termes que nous utilisons dans notre analyse:  
 
-- __Vrais positifs:__ observation que l'on a prédite positive et qui l'est réellement    
-- __Faux positifs:__ observation que l'on a prédite positive et qui ne l'est pas réellement    
-- __Vrais négatifs:__ observation que l'on a prédite négative et qui l'est réellement      
-- __Faux négatifs:__ observation que l'on a prédite négative et qui ne l'est pas réellement  
+- __Vrais positifs:__ observation que l'on a prédit positive et qui l'est réellement    
+- __Faux positifs:__ observation que l'on a prédit positive et qui ne l'est pas réellement    
+- __Vrais négatifs:__ observation que l'on a prédit négative et qui l'est réellement      
+- __Faux négatifs:__ observation que l'on a prédit négative et qui ne l'est pas réellement  
 - __Taux de vrais positifs:__ ensemble des vrais positifs rapportés sur le nombre d'observations classées positives  
 - __Taux de faux positifs:__ ensemble des faux positifs rapportés sur le nombre d'observations classées négatives  
 - __Sensibilité:__ taux de vrais positifs que l'on a correctement identifié    
@@ -76,7 +76,7 @@ Ci-dessus, vous pouvez observer un exemple de matrice de confusion. Définissons
 
 <center><img src="auc_roc.PNG" style="position: relative; width: 414px; height: 349px"  /></center>
 
-La __courbe ROC__ Receiver Operating Characteristics) est une __mesure de performance d'un modèle__. La courbe ROC trace le taux de vrais positifs en fonctions du taux de faux positifs.  Cette courbe trace toutes les valeurs des vrais positifs et des faux positifs selon différents seuils de classifications. Si nous diminuons notre seuil de classification, cela nous permettra d'augmenter le nombre de faux positifs et de vrais négatifs.  
+La __courbe ROC__ Receiver Operating Characteristics) est une __mesure de performance d'un modèle__. La courbe ROC trace le taux de vrais positifs en fonction du taux de faux positifs.  Cette courbe trace toutes les valeurs des vrais positifs et des faux positifs selon différents seuils de classifications. Si nous diminuons notre seuil de classification, cela nous permettra d'augmenter le nombre de faux positifs et de vrais négatifs.  
 
 __L'aire sous la courbe__ (AUC) ou __"Area Under Curve"__ en anglais est une mesure de performance qui représente l'aire située sous la courbe ROC dans le carré allant de (0, 0) à (1, 1).
 
