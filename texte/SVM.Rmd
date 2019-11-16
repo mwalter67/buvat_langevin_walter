@@ -3,9 +3,9 @@ title: "Qu'est-ce que le SVM ?"
 #author: "Jul"
 #date: "24/09/2019"
 output:
+  pdf_document: default
   html_document: 
     #css: style.css
-  pdf_document: default
 ---
 <style>
 body {text-align: justify} </style>
